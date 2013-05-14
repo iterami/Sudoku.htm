@@ -1,0 +1,44 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>Sudoku</title>
+<link href=sudoku.css rel=stylesheet>
+
+<table>
+    <tr>
+        <td rowspan=2 style=width:50%></td>
+        <td id=game-area style=min-width:476px></td>
+        <td class=settings-td rowspan=2>
+            <span id=settings-span>
+                <b>Sudoku</b><br>
+                <input onclick=reset() type=button value=Reset><br>
+                <input id=audio-volume max=1 min=0 step=.01 type=range value=1>Audio<br>
+                <input id=locked maxlength=2 size=1 type=text value=15>*2&gt; Locked
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input onclick=generate_puzzle() style=font-size:123% type=button value="Generate New Puzzle">
+            <input onclick=check() style=font-size:123% type=button value="Check My Solution">
+            <input id=showhide-button onclick=showhide() type=button value=-><br>
+            Puzzle generation algorithm not yet perfected.
+        </td>
+    </tr>
+</table>
+
+<div id=number-select>
+    <a onclick=select_number(1)>1</a>
+    <a onclick=select_number(2)>2</a>
+    <a onclick=select_number(3)>3</a>
+    <a onclick=select_number(4)>4</a>
+    <a onclick=select_number(5)>5</a>
+    <div style=bottom:0;left:10%;position:absolute>
+        <a onclick=select_number(6)>6</a>
+        <a onclick=select_number(7)>7</a>
+        <a onclick=select_number(8)>8</a>
+        <a onclick=select_number(9)>9</a>
+        <a onclick=select_number(0)>—</a>
+    </div>
+</div>
+
+<script src=sudoku.js></script>
