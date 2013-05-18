@@ -201,7 +201,7 @@ function save(){
     j = 0
 }
 function select_number(i){
-    get(s).value = i>0? i : '';
+    get(s).value = i>0 ? i : '';
     s = -1;
     get('number-select').style.display = 'none'
 }
@@ -211,14 +211,14 @@ function showhide(){
     get('showhide-button').value = ['-','+'][i]
 }
 
-var i=80;
-var j=[];
-var ls=window.localStorage;
-var m=0;
-var q=0;
-var selected_button=-1;
-var t=0;
-var u=[];
+var i = 80;
+var j = [];
+var ls = window.localStorage;
+var m = 0;
+var q = 0;
+var selected_button = -1;
+var t = 0;
+var u = [];
 
 get('audio-volume').value = ls.getItem('sudoku0')===null ? 1 : parseFloat(ls.getItem('sudoku0'));
 get('locked').value = ls.getItem('sudoku1')===null ? 15 : parseInt(ls.getItem('sudoku1'));
