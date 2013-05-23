@@ -11,6 +11,7 @@ function check(){
 
     alert(j ? 'Correct! You win!' : 'Sorry, try again.')
 }
+
 function display_number_select(i){
     /*reset button zIndex values*/
     j = 80;
@@ -33,6 +34,7 @@ function display_number_select(i){
         get('number-select').style.display = 'none'
     }
 }
+
 function generate_puzzle(){
     save();
 
@@ -181,12 +183,15 @@ function generate_puzzle(){
         get(80 - j).value = u[80 - j]
     }while(i--)
 }
+
 function get(i){
     return document.getElementById(i)
 }
+
 function random_number(i){
     return Math.floor(Math.random() * i)
 }
+
 function reset(){
     if(confirm('Reset settings?')){
         get('audio-volume').value = 1;
@@ -194,6 +199,7 @@ function reset(){
         save()
     }
 }
+
 function save(){
     i = 1;
     j = [
@@ -210,11 +216,13 @@ function save(){
     }while(i--)
     j = 0
 }
+
 function select_number(i){
     get(s).value = i > 0 ? i : '';
     s = -1;
     get('number-select').style.display = 'none'
 }
+
 function showhide(){
     i = get('showhide-button').value === '-' ? 1 : 0;
     get('settings-span').style.display = ['inline','none'][i];
