@@ -96,7 +96,6 @@ function generate_puzzle(){
         }while(t--)
     }while(i--);
 
-
     /*switch columns within a block of 3 columns 100 times*/
     i = 99;
     do{
@@ -136,23 +135,6 @@ function generate_puzzle(){
             var temp = u[m * 27 + j * 9 + t];
             u[m * 27 + j * 9 + t] = u[m * 27 + q * 9 + t];
             u[m * 27 + q * 9 + t] = temp
-        }while(t--)
-    }while(i--);
-
-
-
-    i=99;
-    do{
-        j = random_number(3);
-        m = random_number(3);
-        do{
-            q = random_number(3)
-        }while(j == q);
-        t = 8;
-        do{
-            var temp = u[9 * t + 3 * m + j];
-            u[9 * t + 3 * m + j] = u[9 * t + 3 * m + q];
-            u[9 * t + 3 * m + q] = temp
         }while(t--)
     }while(i--);
 
@@ -244,7 +226,7 @@ get('locked').value = ls.getItem('sudoku1') === null ? 15 : parseInt(ls.getItem(
 /*create buttons and add to game-area*/
 do{
     j.push('<input class=buttons id=' + i + ' onclick=display_number_select(' + i + ') style=background:#333 type=button>');
-    if(i%9 === 0 && i !== 0){
+    if(i % 9 === 0 && i !== 0){
         j.push('<br>')
     }
 }while(i--);
