@@ -5,8 +5,8 @@
 
 <table>
     <tr>
-        <td rowspan=2 style=width:50%></td>
-        <td id=game-area style=min-width:476px></td>
+        <td rowspan=2 style=width:50%>
+        <td id=game-area style=min-width:476px>
         <td class=settings-td rowspan=2>
             <span id=settings-span>
                 <b>Sudoku</b><br>
@@ -14,16 +14,12 @@
                 <input id=audio-volume max=1 min=0 step=.01 type=range value=1>Audio<br>
                 <input id=locked maxlength=2 size=1 type=text value=15>*2&gt; Locked
             </span>
-        </td>
-    </tr>
     <tr>
         <td>
             <input onclick=generate_puzzle() style=font-size:123% type=button value="Generate New Puzzle">
             <input onclick=check() style=font-size:123% type=button value="Check My Solution">
             <input id=showhide-button onclick=showhide() type=button value=-><br>
             Puzzle generation algorithm not yet perfected.
-        </td>
-    </tr>
 </table>
 
 <div id=number-select>
