@@ -1,5 +1,5 @@
 function check(){
-    /* check if every button has correct solution on it */
+    // check if every button has correct solution on it
     var win = 1;
     i = 80;
     do{
@@ -13,7 +13,7 @@ function check(){
 }
 
 function display_number_select(id){
-    /* reset button zIndex values */
+    // reset button zIndex values
     i = 80;
     do{
         get(i).style.zIndex = 0;
@@ -22,16 +22,16 @@ function display_number_select(id){
     if(selected_button == -1 || selected_button != id){
         selected_button = id;
 
-        /* increase zIndex of selected button */
+        // increase zIndex of selected button
         get(selected_button).style.zIndex = 2;
 
-        /* display number-select behind selected button */
+        // display number-select behind selected button
         get('number-select').style.left = (get(id).offsetLeft - 50) + 'px';
         get('number-select').style.top = (get(id).offsetTop - 50) + 'px';
         get('number-select').style.display = 'block';
 
     }else{
-        /* hide number select */
+        // hide number select
         selected_button = -1;
         get('number-select').style.display = 'none';
     }
@@ -44,7 +44,7 @@ function generate_puzzle(){
     var second = 0;
     var which = 0;
 
-    /* base sudoku puzzle */
+    // base sudoku puzzle
     puzzle = [
         8,7,6,5,4,3,2,1,9,
         5,4,3,2,1,9,8,7,6,
@@ -57,16 +57,16 @@ function generate_puzzle(){
         9,8,7,6,5,4,3,2,1
     ];
 
-    /* switch all instances of two random numbers 100 times */
+    // switch all instances of two random numbers 100 times
     i = 99;
     do{
-        /* pick two different numbers between 1 and 9 */
+        // pick two different numbers between 1 and 9
         first = Math.ceil(Math.random() * 9);
         do{
             second = Math.ceil(Math.random() * 9);
         }while(first == second);
 
-        /* iterate through all buttons and switch those two numbers */
+        // iterate through all buttons and switch those two numbers
         times = 80;
         do{
             if(puzzle[times] == first){
@@ -78,19 +78,19 @@ function generate_puzzle(){
         }while(times--);
     }while(i--);
 
-    /* switch columns between different blocks of 3 columns 100 times */
+    // switch columns between different blocks of 3 columns 100 times
     i = 99;
     do{
-        /* pick a column number to switch */
+        // pick a column number to switch
         which = random_number(3);
 
-        /* pick two different blocks of 3 columns to switch the selected column number between */
+        // pick two different blocks of 3 columns to switch the selected column number between
         first = random_number(3);
         do{
             second = random_number(3);
         }while(first == second);
 
-        /* iterate through each value in the selected column and swap them between the two selected blocks of 3 columns */
+        // iterate through each value in the selected column and swap them between the two selected blocks of 3 columns
         times = 8;
         do{
             var temp = puzzle[9 * times + 3 * first + which];
@@ -99,19 +99,19 @@ function generate_puzzle(){
         }while(times--);
     }while(i--);
 
-    /* switch columns within a block of 3 columns 100 times */
+    // switch columns within a block of 3 columns 100 times
     i = 99;
     do{
-        /* pick the block of 3 columns in which to switch two columns */
+        // pick the block of 3 columns in which to switch two columns
         which = random_number(3);
 
-        /* pick two different columns to switch */
+        // pick two different columns to switch
         first = random_number(3);
         do{
             second = random_number(3);
         }while(first == second);
 
-        /* iterate through each value and swap the values between the two selected columns */
+        // iterate through each value and swap the values between the two selected columns
         times = 8;
         do{
             var temp = puzzle[9 * times + 3 * which + first];
@@ -120,19 +120,19 @@ function generate_puzzle(){
         }while(times--);
     }while(i--);
 
-    /* switch random rows within a block of 3 rows 100 times */
+    // switch random rows within a block of 3 rows 100 times
     i = 99;
     do{
-        /* pick one of the 3 blocks of 3 rows */
+        // pick one of the 3 blocks of 3 rows
         which = random_number(3);
 
-        /* pick two different rows */
+        // pick two different rows
         first = random_number(3);
         do{
             second = random_number(3);
         }while(first == second);
 
-        /* iterate through each value and swap the values between the two selected rows */
+        // iterate through each value and swap the values between the two selected rows
         times = 8;
         do{
             var temp = puzzle[which * 27 + first * 9 + times];
@@ -141,7 +141,7 @@ function generate_puzzle(){
         }while(times--);
     }while(i--);
 
-    /* reset all buttons */
+    // reset all buttons
     i = 80;
     do{
         get(i).disabled = 0;
@@ -150,7 +150,7 @@ function generate_puzzle(){
         get(i).value = '';
     }while(i--);
 
-    /* add solutions to some random buttons */
+    // add solutions to some random buttons
     i = get('locked').value - 1;
     do{
         first = random_number(81);
@@ -230,7 +230,7 @@ var times = 0;
 get('audio-volume').value = ls.getItem('sudoku-0') === null ? 1 : parseFloat(ls.getItem('sudoku-0'));
 get('locked').value = ls.getItem('sudoku-1') === null ? 15 : parseInt(ls.getItem('sudoku-1'));
 
-/* create buttons and add to game-area */
+// create buttons and add to game-area
 do{
     j.push('<input class=buttons id=' + i + ' onclick=display_number_select(' + i + ') style=background:#333 type=button>');
     if(i % 9 === 0 && i !== 0){
@@ -239,7 +239,7 @@ do{
 }while(i--);
 get('game-area').innerHTML = j.join('');
 
-/* setup margins */
+// setup margins
 i = 8;
 do{
     get(3 + 9 * i).style.marginRight = '5px';
