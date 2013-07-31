@@ -254,6 +254,16 @@ do{
 
 generate_puzzle();
 
+window.onkeydown = function(e){
+    if(selected_button != -1){
+        i = window.event ? event : e;
+        if((i.charCode ? i.charCode : i.keyCode) == 27){// ESC
+            // hide number select
+            display_number_select(selected_button);
+        }
+    }
+};
+
 window.onresize = function(e){
     // update position of number select if visible
     if(selected_button != -1){
