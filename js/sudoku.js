@@ -26,8 +26,7 @@ function display_number_select(id){
         get(selected_button).style.zIndex = 2;
 
         // display number-select behind selected button
-        get('number-select').style.left = (get(id).offsetLeft - 50) + 'px';
-        get('number-select').style.top = (get(id).offsetTop - 50) + 'px';
+        update_number_select(id);
         get('number-select').style.display = 'block';
 
     }else{
@@ -220,6 +219,11 @@ function showhide(){
     get('showhide-button').value = ['-', '+'][i];
 }
 
+function update_number_select(id){
+    get('number-select').style.left = (get(id).offsetLeft - 50 - window.pageXOffset) + 'px';
+    get('number-select').style.top  = (get(id).offsetTop  - 50 - window.pageYOffset) + 'px';
+}
+
 var i = 80;
 var j = [];
 var ls = window.localStorage;
@@ -249,3 +253,17 @@ do{
 }while(i--);
 
 generate_puzzle();
+
+window.onresize = function(e){
+    // update position of number select if visible
+    if(selected_button != -1){
+        update_number_select(selected_button);
+    }
+};
+
+window.onscroll = function(e){
+    // update position of number select if visible
+    if(selected_button != -1){
+        update_number_select(selected_button);
+    }
+};
