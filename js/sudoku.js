@@ -220,7 +220,16 @@ function showhide(){
 }
 
 function update_number_select(id){
-    get('number-select').style.left = (get(id).offsetLeft - 50 - window.pageXOffset) + 'px';
+    // make sure the number select box doesn't go past the left/right edges
+    i = get(id).offsetLeft - 50 - window.pageXOffset;
+    if(i < 0){
+        i = 0;
+    }else if(i > window.innerWidth - 150){
+        i = window.innerWidth - 150;
+    }
+    get('number-select').style.left = i + 'px';
+
+    // there is no worry of the number select box going past the top/bottom edges
     get('number-select').style.top  = (get(id).offsetTop  - 50 - window.pageYOffset) + 'px';
 }
 
