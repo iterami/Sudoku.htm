@@ -1,11 +1,3 @@
-a{
-    color: #4c4;
-    cursor: pointer;
-    text-decoration: underline;
-}
-a:hover{
-    color: #777;
-}
 .buttons{
     font-size: 200%;
     height: 50px;
@@ -39,6 +31,5 @@ a:hover{
 }
 table{
     border-collapse: collapse;
-    margin-top: 50px;
     text-align: center;
 }

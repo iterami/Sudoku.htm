@@ -37,6 +37,7 @@ function display_number_select(id){
 }
 
 function generate_puzzle(){
+    get('lol-a-table').style.marginTop = parseInt(get('y-margin').value)+'px';
     save();
 
     var first = 0;
@@ -180,25 +181,28 @@ function reset(){
     if(confirm('Reset settings?')){
         get('audio-volume').value = 1;
         get('locked').value = 15;
+        get('y-margin').value = 50;
         save();
     }
 }
 
 function save(){
-    i = 1;
+    i = 2;
     j = [
         'audio-volume',
-        'locked'
+        'locked',
+        'y-margin'
     ];
     do{
-        if(isNaN(get(j[i]).value) || get(j[i]).value === [1, 15][i] || get(j[i]).value < [0, 1][i]){
-            ls.removeItem('sudoku-' + i);
+        if(isNaN(get(j[i]).value) || get(j[i]).value === [1, 15, 50][i] || get(j[i]).value < [0, 1, 0][i]){
+            window.localStorage.removeItem('sudoku-' + i);
             get(j[i]).value = [
                 1,
-                15
+                15,
+                50
             ][i];
         }else{
-            ls.setItem(
+            window.localStorage.setItem(
                 'sudoku-' + i,
                 get(j[i]).value
             );
@@ -235,13 +239,19 @@ function update_number_select(id){
 
 var i = 80;
 var j = [];
-var ls = window.localStorage;
 var puzzle = [];
 var selected_button = -1;
 var times = 0;
 
-get('audio-volume').value = ls.getItem('sudoku-0') === null ? 1 : parseFloat(ls.getItem('sudoku-0'));
-get('locked').value = ls.getItem('sudoku-1') === null ? 15 : parseInt(ls.getItem('sudoku-1'));
+get('audio-volume').value = window.localStorage.getItem('sudoku-0') === null
+    ? 1
+    : parseFloat(window.localStorage.getItem('sudoku-0'));
+get('locked').value = window.localStorage.getItem('sudoku-1') === null
+    ? 15
+    : parseInt(window.localStorage.getItem('sudoku-1'));
+get('y-margin').value = window.localStorage.getItem('sudoku-2') === null
+    ? 50
+    : parseInt(window.localStorage.getItem('sudoku-2'));
 
 // create buttons and add to game-area
 do{
