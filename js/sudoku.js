@@ -3,7 +3,7 @@ function check(){
     var win = 1;
     i = 80;
     do{
-        if(get(i).value != puzzle[i]){
+        if(document.getElementById(i).value != puzzle[i]){
             win = 0;
             break;
         }
@@ -16,28 +16,28 @@ function display_number_select(id){
     // reset button zIndex values
     i = 80;
     do{
-        get(i).style.zIndex = 0;
+        document.getElementById(i).style.zIndex = 0;
     }while(i--);
 
     if(selected_button == -1 || selected_button != id){
         selected_button = id;
 
         // increase zIndex of selected button
-        get(selected_button).style.zIndex = 2;
+        document.getElementById(selected_button).style.zIndex = 2;
 
         // display number-select behind selected button
         update_number_select(id);
-        get('number-select').style.display = 'block';
+        document.getElementById('number-select').style.display = 'block';
 
     }else{
         // hide number select
         selected_button = -1;
-        get('number-select').style.display = 'none';
+        document.getElementById('number-select').style.display = 'none';
     }
 }
 
 function generate_puzzle(){
-    get('lol-a-table').style.marginTop = parseInt(get('y-margin').value)+'px';
+    document.getElementById('lol-a-table').style.marginTop = parseInt(document.getElementById('y-margin').value)+'px';
     save();
 
     var first = 0;
@@ -46,15 +46,15 @@ function generate_puzzle(){
 
     // base sudoku puzzle
     puzzle = [
-        8,7,6,5,4,3,2,1,9,
-        5,4,3,2,1,9,8,7,6,
-        2,1,9,8,7,6,5,4,3,
-        7,6,5,4,3,2,1,9,8,
-        4,3,2,1,9,8,7,6,5,
-        1,9,8,7,6,5,4,3,2,
-        6,5,4,3,2,1,9,8,7,
-        3,2,1,9,8,7,6,5,4,
-        9,8,7,6,5,4,3,2,1
+      8,7,6,5,4,3,2,1,9,
+      5,4,3,2,1,9,8,7,6,
+      2,1,9,8,7,6,5,4,3,
+      7,6,5,4,3,2,1,9,8,
+      4,3,2,1,9,8,7,6,5,
+      1,9,8,7,6,5,4,3,2,
+      6,5,4,3,2,1,9,8,7,
+      3,2,1,9,8,7,6,5,4,
+      9,8,7,6,5,4,3,2,1
     ];
 
     // switch all instances of two random numbers 100 times
@@ -144,33 +144,29 @@ function generate_puzzle(){
     // reset all buttons
     i = 80;
     do{
-        get(i).disabled = 0;
-        get(i).style.background = '#333';
-        get(i).style.color = '#aaa';
-        get(i).value = '';
+        document.getElementById(i).disabled = 0;
+        document.getElementById(i).style.background = '#333';
+        document.getElementById(i).style.color = '#aaa';
+        document.getElementById(i).value = '';
     }while(i--);
 
     // add solutions to some random buttons
-    i = get('locked').value - 1;
+    i = document.getElementById('locked').value - 1;
     do{
         first = random_number(81);
 
-        get(first).disabled = 1;
-        get(80 - first).disabled = 1;
+        document.getElementById(first).disabled = 1;
+        document.getElementById(80 - first).disabled = 1;
 
-        get(first).style.background = '#777';
-        get(80 - first).style.background = '#777';
+        document.getElementById(first).style.background = '#777';
+        document.getElementById(80 - first).style.background = '#777';
 
-        get(first).style.color = '#000';
-        get(80 - first).style.color = '#000';
+        document.getElementById(first).style.color = '#000';
+        document.getElementById(80 - first).style.color = '#000';
 
-        get(first).value = puzzle[first];
-        get(80 - first).value = puzzle[80 - first];
+        document.getElementById(first).value = puzzle[first];
+        document.getElementById(80 - first).value = puzzle[80 - first];
     }while(i--);
-}
-
-function get(i){
-    return document.getElementById(i);
 }
 
 function random_number(i){
@@ -179,9 +175,9 @@ function random_number(i){
 
 function reset(){
     if(confirm('Reset settings?')){
-        get('audio-volume').value = 1;
-        get('locked').value = 15;
-        get('y-margin').value = 50;
+        document.getElementById('audio-volume').value = 1;
+        document.getElementById('locked').value = 15;
+        document.getElementById('y-margin').value = 50;
         save();
     }
 }
@@ -189,22 +185,24 @@ function reset(){
 function save(){
     i = 2;
     j = [
-        'audio-volume',
-        'locked',
-        'y-margin'
+      'audio-volume',
+      'locked',
+      'y-margin'
     ];
     do{
-        if(isNaN(get(j[i]).value) || get(j[i]).value === [1, 15, 50][i] || get(j[i]).value < [0, 1, 0][i]){
+        if(isNaN(document.getElementById(j[i]).value)
+          || document.getElementById(j[i]).value === [1, 15, 50][i]
+          || document.getElementById(j[i]).value < [0, 1, 0][i]){
             window.localStorage.removeItem('sudoku-' + i);
-            get(j[i]).value = [
-                1,
-                15,
-                50
+            document.getElementById(j[i]).value = [
+              1,
+              15,
+              50
             ][i];
         }else{
             window.localStorage.setItem(
-                'sudoku-' + i,
-                get(j[i]).value
+              'sudoku-' + i,
+              document.getElementById(j[i]).value
             );
         }
     }while(i--);
@@ -212,29 +210,33 @@ function save(){
 }
 
 function select_number(number){
-    get(selected_button).value = number > 0 ? number : '';
+    document.getElementById(selected_button).value = number > 0
+      ? number
+      : '';
     selected_button = -1;
-    get('number-select').style.display = 'none';
+    document.getElementById('number-select').style.display = 'none';
 }
 
 function showhide(){
-    i = get('showhide-button').value === '-' ? 1 : 0;
-    get('settings-span').style.display = ['inline', 'none'][i];
-    get('showhide-button').value = ['-', '+'][i];
+    i = document.getElementById('showhide-button').value === '-'
+      ? 1
+      : 0;
+    document.getElementById('settings-span').style.display = ['inline', 'none'][i];
+    document.getElementById('showhide-button').value = ['-', '+'][i];
 }
 
 function update_number_select(id){
     // make sure the number select box doesn't go past the left/right edges
-    i = get(id).offsetLeft - 50 - window.pageXOffset;
+    i = document.getElementById(id).offsetLeft - 50 - window.pageXOffset;
     if(i < 0){
         i = 0;
     }else if(i > window.innerWidth - 150){
         i = window.innerWidth - 150;
     }
-    get('number-select').style.left = i + 'px';
+    document.getElementById('number-select').style.left = i + 'px';
 
     // there is no worry of the number select box going past the top/bottom edges
-    get('number-select').style.top  = (get(id).offsetTop  - 50 - window.pageYOffset) + 'px';
+    document.getElementById('number-select').style.top  = (document.getElementById(id).offsetTop  - 50 - window.pageYOffset) + 'px';
 }
 
 var i = 80;
@@ -243,15 +245,15 @@ var puzzle = [];
 var selected_button = -1;
 var times = 0;
 
-get('audio-volume').value = window.localStorage.getItem('sudoku-0') === null
-    ? 1
-    : parseFloat(window.localStorage.getItem('sudoku-0'));
-get('locked').value = window.localStorage.getItem('sudoku-1') === null
-    ? 15
-    : parseInt(window.localStorage.getItem('sudoku-1'));
-get('y-margin').value = window.localStorage.getItem('sudoku-2') === null
-    ? 50
-    : parseInt(window.localStorage.getItem('sudoku-2'));
+document.getElementById('audio-volume').value = window.localStorage.getItem('sudoku-0') === null
+  ? 1
+  : parseFloat(window.localStorage.getItem('sudoku-0'));
+document.getElementById('locked').value = window.localStorage.getItem('sudoku-1') === null
+  ? 15
+  : parseInt(window.localStorage.getItem('sudoku-1'));
+document.getElementById('y-margin').value = window.localStorage.getItem('sudoku-2') === null
+  ? 50
+  : parseInt(window.localStorage.getItem('sudoku-2'));
 
 // create buttons and add to game-area
 do{
@@ -260,15 +262,15 @@ do{
         j.push('<br>');
     }
 }while(i--);
-get('game-area').innerHTML = j.join('');
+document.getElementById('game-area').innerHTML = j.join('');
 
 // setup margins
 i = 8;
 do{
-    get(3 + 9 * i).style.marginRight = '5px';
-    get(27 + i).style.marginBottom   = '5px';
-    get(54 + i).style.marginBottom   = '5px';
-    get(6 + 9 * i).style.marginRight = '5px';
+    document.getElementById(3 + 9 * i).style.marginRight = '5px';
+    document.getElementById(27 + i).style.marginBottom   = '5px';
+    document.getElementById(54 + i).style.marginBottom   = '5px';
+    document.getElementById(6 + 9 * i).style.marginRight = '5px';
 }while(i--);
 
 generate_puzzle();
