@@ -9,7 +9,7 @@ function check(){
         }
     }while(i--);
 
-    alert(win ? 'Correct! You win!' : 'Sorry, try again.');
+    alert(win ? 'Correct! You win!' : 'Incorrect, try again.');
 }
 
 function display_number_select(id){
