@@ -36,137 +36,140 @@ function display_number_select(id){
     }
 }
 
-function generate_puzzle(){
-    document.getElementById('lol-a-table').style.marginTop = parseInt(document.getElementById('y-margin').value)+'px';
-    save();
+function generate_puzzle(confirmation_required){
+    if(!confirmation_required
+      || confirm('Generate new puzzle?')){
+        document.getElementById('lol-a-table').style.marginTop = parseInt(document.getElementById('y-margin').value)+'px';
+        save();
 
-    var first = 0;
-    var second = 0;
-    var which = 0;
+        var first = 0;
+        var second = 0;
+        var which = 0;
 
-    // base sudoku puzzle
-    puzzle = [
-      8,7,6,5,4,3,2,1,9,
-      5,4,3,2,1,9,8,7,6,
-      2,1,9,8,7,6,5,4,3,
-      7,6,5,4,3,2,1,9,8,
-      4,3,2,1,9,8,7,6,5,
-      1,9,8,7,6,5,4,3,2,
-      6,5,4,3,2,1,9,8,7,
-      3,2,1,9,8,7,6,5,4,
-      9,8,7,6,5,4,3,2,1
-    ];
+        // base sudoku puzzle
+        puzzle = [
+          8,7,6,5,4,3,2,1,9,
+          5,4,3,2,1,9,8,7,6,
+          2,1,9,8,7,6,5,4,3,
+          7,6,5,4,3,2,1,9,8,
+          4,3,2,1,9,8,7,6,5,
+          1,9,8,7,6,5,4,3,2,
+          6,5,4,3,2,1,9,8,7,
+          3,2,1,9,8,7,6,5,4,
+          9,8,7,6,5,4,3,2,1
+        ];
 
-    // switch all instances of two random numbers 100 times
-    i = 99;
-    do{
-        // pick two different numbers between 1 and 9
-        first = Math.ceil(Math.random() * 9);
+        // switch all instances of two random numbers 100 times
+        i = 99;
         do{
-            second = Math.ceil(Math.random() * 9);
-        }while(first == second);
+            // pick two different numbers between 1 and 9
+            first = Math.ceil(Math.random() * 9);
+            do{
+                second = Math.ceil(Math.random() * 9);
+           }while(first == second);
 
-        // iterate through all buttons and switch those two numbers
-        times = 80;
+            // iterate through all buttons and switch those two numbers
+            times = 80;
+            do{
+                if(puzzle[times] == first){
+                    puzzle[times] = second;
+
+                }else if(puzzle[times] == second){
+                    puzzle[times] = first;
+                }
+            }while(times--);
+        }while(i--);
+
+        // switch columns between different blocks of 3 columns 100 times
+        i = 99;
         do{
-            if(puzzle[times] == first){
-                puzzle[times] = second;
+            // pick a column number to switch
+            which = random_number(3);
 
-            }else if(puzzle[times] == second){
-                puzzle[times] = first;
-            }
-        }while(times--);
-    }while(i--);
+            // pick two different blocks of 3 columns to switch the selected column number between
+            first = random_number(3);
+            do{
+                second = random_number(3);
+            }while(first == second);
 
-    // switch columns between different blocks of 3 columns 100 times
-    i = 99;
-    do{
-        // pick a column number to switch
-        which = random_number(3);
+            // iterate through each value in the selected column and swap them between the two selected blocks of 3 columns
+            times = 8;
+            do{
+                var temp = puzzle[9 * times + 3 * first + which];
+                puzzle[9 * times + 3 * first + which] = puzzle[9 * times + 3 * second + which];
+                puzzle[9 * times + 3 * second + which] = temp;
+            }while(times--);
+        }while(i--);
 
-        // pick two different blocks of 3 columns to switch the selected column number between
-        first = random_number(3);
+        // switch columns within a block of 3 columns 100 times
+        i = 99;
         do{
-            second = random_number(3);
-        }while(first == second);
+            // pick the block of 3 columns in which to switch two columns
+            which = random_number(3);
 
-        // iterate through each value in the selected column and swap them between the two selected blocks of 3 columns
-        times = 8;
+            // pick two different columns to switch
+            first = random_number(3);
+            do{
+                second = random_number(3);
+            }while(first == second);
+
+            // iterate through each value and swap the values between the two selected columns
+            times = 8;
+            do{
+                var temp = puzzle[9 * times + 3 * which + first];
+                puzzle[9 * times + 3 * which + first] = puzzle[9 * times + 3 * which + second];
+                puzzle[9 * times + 3 * which + second] = temp;
+            }while(times--);
+        }while(i--);
+
+        // switch random rows within a block of 3 rows 100 times
+        i = 99;
         do{
-            var temp = puzzle[9 * times + 3 * first + which];
-            puzzle[9 * times + 3 * first + which] = puzzle[9 * times + 3 * second + which];
-            puzzle[9 * times + 3 * second + which] = temp;
-        }while(times--);
-    }while(i--);
+            // pick one of the 3 blocks of 3 rows
+            which = random_number(3);
 
-    // switch columns within a block of 3 columns 100 times
-    i = 99;
-    do{
-        // pick the block of 3 columns in which to switch two columns
-        which = random_number(3);
+            // pick two different rows
+            first = random_number(3);
+            do{
+                second = random_number(3);
+            }while(first == second);
 
-        // pick two different columns to switch
-        first = random_number(3);
+            // iterate through each value and swap the values between the two selected rows
+            times = 8;
+            do{
+                var temp = puzzle[which * 27 + first * 9 + times];
+                puzzle[which * 27 + first * 9 + times] = puzzle[which * 27 + second * 9 + times];
+                puzzle[which * 27 + second * 9 + times] = temp;
+            }while(times--);
+        }while(i--);
+
+        // reset all buttons
+        i = 80;
         do{
-            second = random_number(3);
-        }while(first == second);
+            document.getElementById(i).disabled = 0;
+            document.getElementById(i).style.background = '#333';
+            document.getElementById(i).style.color = '#aaa';
+            document.getElementById(i).value = '';
+        }while(i--);
 
-        // iterate through each value and swap the values between the two selected columns
-        times = 8;
+        // add solutions to some random buttons
+        i = document.getElementById('locked').value - 1;
         do{
-            var temp = puzzle[9 * times + 3 * which + first];
-            puzzle[9 * times + 3 * which + first] = puzzle[9 * times + 3 * which + second];
-            puzzle[9 * times + 3 * which + second] = temp;
-        }while(times--);
-    }while(i--);
+            first = random_number(81);
 
-    // switch random rows within a block of 3 rows 100 times
-    i = 99;
-    do{
-        // pick one of the 3 blocks of 3 rows
-        which = random_number(3);
+            document.getElementById(first).disabled = 1;
+            document.getElementById(80 - first).disabled = 1;
 
-        // pick two different rows
-        first = random_number(3);
-        do{
-            second = random_number(3);
-        }while(first == second);
+            document.getElementById(first).style.background = '#777';
+            document.getElementById(80 - first).style.background = '#777';
 
-        // iterate through each value and swap the values between the two selected rows
-        times = 8;
-        do{
-            var temp = puzzle[which * 27 + first * 9 + times];
-            puzzle[which * 27 + first * 9 + times] = puzzle[which * 27 + second * 9 + times];
-            puzzle[which * 27 + second * 9 + times] = temp;
-        }while(times--);
-    }while(i--);
+            document.getElementById(first).style.color = '#000';
+            document.getElementById(80 - first).style.color = '#000';
 
-    // reset all buttons
-    i = 80;
-    do{
-        document.getElementById(i).disabled = 0;
-        document.getElementById(i).style.background = '#333';
-        document.getElementById(i).style.color = '#aaa';
-        document.getElementById(i).value = '';
-    }while(i--);
-
-    // add solutions to some random buttons
-    i = document.getElementById('locked').value - 1;
-    do{
-        first = random_number(81);
-
-        document.getElementById(first).disabled = 1;
-        document.getElementById(80 - first).disabled = 1;
-
-        document.getElementById(first).style.background = '#777';
-        document.getElementById(80 - first).style.background = '#777';
-
-        document.getElementById(first).style.color = '#000';
-        document.getElementById(80 - first).style.color = '#000';
-
-        document.getElementById(first).value = puzzle[first];
-        document.getElementById(80 - first).value = puzzle[80 - first];
-    }while(i--);
+            document.getElementById(first).value = puzzle[first];
+            document.getElementById(80 - first).value = puzzle[80 - first];
+        }while(i--);
+    }
 }
 
 function random_number(i){
@@ -273,7 +276,7 @@ do{
     document.getElementById(6 + 9 * i).style.marginRight = '5px';
 }while(i--);
 
-generate_puzzle();
+generate_puzzle(0);
 
 window.onkeydown = function(e){
     if(selected_button != -1){
