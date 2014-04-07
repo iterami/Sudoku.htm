@@ -279,12 +279,19 @@ do{
 generate_puzzle(0);
 
 window.onkeydown = function(e){
-    if(selected_button != -1){
-        i = window.event ? event : e;
-        if((i.charCode ? i.charCode : i.keyCode) == 27){// ESC
-            // hide number select
-            display_number_select(selected_button);
-        }
+    var key = window.event ? event : e;
+    key = key.charCode ? key.charCode : key.keyCode;
+
+    if(key == 71){// G
+        generate_puzzle(1);
+
+    }else if(key == 67){
+        check();
+
+    }else if(selected_button != -1
+      && key == 27){// ESC
+        // hide number select
+        display_number_select(selected_button);
     }
 };
 
