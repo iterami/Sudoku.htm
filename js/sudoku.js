@@ -91,12 +91,12 @@ function generate_puzzle(confirmation_required){
         loop_counter = 99;
         do{
             // pick a column number to switch
-            which = random_number(3);
+            which = Math.floor(Math.random() * 3);
 
             // pick two different blocks of 3 columns to switch the selected column number between
-            first = random_number(3);
+            first = Math.floor(Math.random() * 3);
             do{
-                second = random_number(3);
+                second = Math.floor(Math.random() * 3);
             }while(first == second);
 
             // iterate through each value in the selected column
@@ -113,12 +113,12 @@ function generate_puzzle(confirmation_required){
         loop_counter = 99;
         do{
             // pick the block of 3 columns in which to switch two columns
-            which = random_number(3);
+            which = Math.floor(Math.random() * 3);
 
             // pick two different columns to switch
-            first = random_number(3);
+            first = Math.floor(Math.random() * 3);
             do{
-                second = random_number(3);
+                second = Math.floor(Math.random() * 3);
             }while(first == second);
 
             // iterate through each value and swap the values between the two selected columns
@@ -134,12 +134,12 @@ function generate_puzzle(confirmation_required){
         loop_counter = 99;
         do{
             // pick one of the 3 blocks of 3 rows
-            which = random_number(3);
+            which = Math.floor(Math.random() * 3);
 
             // pick two different rows
-            first = random_number(3);
+            first = Math.floor(Math.random() * 3);
             do{
-                second = random_number(3);
+                second = Math.floor(Math.random() * 3);
             }while(first == second);
 
             // iterate through each value and swap the values between the two selected rows
@@ -163,7 +163,7 @@ function generate_puzzle(confirmation_required){
         // add solutions to some random buttons
         loop_counter = document.getElementById('locked').value - 1;
         do{
-            first = random_number(81);
+            first = Math.floor(Math.random() * 81);
 
             document.getElementById(first).disabled = 1;
             document.getElementById(80 - first).disabled = 1;
@@ -178,10 +178,6 @@ function generate_puzzle(confirmation_required){
             document.getElementById(80 - first).value = puzzle[80 - first];
         }while(loop_counter--);
     }
-}
-
-function random_number(i){
-    return Math.floor(Math.random() * i);
 }
 
 function reset(){
