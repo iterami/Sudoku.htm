@@ -6,6 +6,11 @@ a{
 a:hover{
     color: #777;
 }
+body,
+input{
+    background: #000;
+    color: #aaa;
+}
 .buttons{
     font-size: 200%;
     height: 50px;
