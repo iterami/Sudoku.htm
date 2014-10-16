@@ -190,18 +190,19 @@ function reset(){
 }
 
 function save(){
-    j = [
-      'audio-volume',
-      'locked',
-      'y-margin'
-    ];
     var loop_counter = 2;
     do{
-        if(isNaN(document.getElementById(j[loop_counter]).value)
-          || document.getElementById(j[loop_counter]).value === [1, 15, 50][loop_counter]
-          || document.getElementById(j[loop_counter]).value < [0, 1, 0][loop_counter]){
-            window.localStorage.removeItem('sudoku-' + loop_counter);
-            document.getElementById(j[loop_counter]).value = [
+        var id = [
+          'audio-volume',
+          'locked',
+          'y-margin'
+        ][loop_counter];
+
+        if(isNaN(document.getElementById(id).value)
+          || document.getElementById(id).value === [1, 15, 50][loop_counter]
+          || document.getElementById(id).value < [0, 1, 0][loop_counter]){
+            window.localStorage.removeItem('Sudoku.htm-' + id);
+            document.getElementById(id).value = [
               1,
               15,
               50
@@ -209,13 +210,11 @@ function save(){
 
         }else{
             window.localStorage.setItem(
-              'sudoku-' + loop_counter,
-              document.getElementById(j[loop_counter]).value
+              'Sudoku.htm-' + id,
+              document.getElementById(id).value
             );
         }
     }while(loop_counter--);
-
-    j = 0;
 }
 
 function select_number(number){
@@ -259,15 +258,15 @@ var puzzle = [];
 var selected_button = -1;
 var times = 0;
 
-document.getElementById('audio-volume').value = window.localStorage.getItem('sudoku-0') === null
+document.getElementById('audio-volume').value = window.localStorage.getItem('Sudoku.htm-audio-volume') === null
   ? 1
-  : parseFloat(window.localStorage.getItem('sudoku-0'));
-document.getElementById('locked').value = window.localStorage.getItem('sudoku-1') === null
+  : parseFloat(window.localStorage.getItem('Sudoku.htm-audio-volume'));
+document.getElementById('locked').value = window.localStorage.getItem('Sudoku.htm-locked') === null
   ? 15
-  : parseInt(window.localStorage.getItem('sudoku-1'));
-document.getElementById('y-margin').value = window.localStorage.getItem('sudoku-2') === null
+  : parseInt(window.localStorage.getItem('Sudoku.htm-locked'));
+document.getElementById('y-margin').value = window.localStorage.getItem('Sudoku.htm-y-margin') === null
   ? 50
-  : parseInt(window.localStorage.getItem('sudoku-2'));
+  : parseInt(window.localStorage.getItem('Sudoku.htm-y-margin'));
 
 // create buttons and add to game-area
 var loop_counter = 80;
