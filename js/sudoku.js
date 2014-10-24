@@ -1,5 +1,5 @@
 function check(){
-    // check if every button has correct solution on it
+    // Check if every button has correct solution on it.
     var win = 1;
     var loop_counter = 80;
     do{
@@ -17,7 +17,7 @@ function check(){
 }
 
 function display_number_select(id){
-    // reset button zIndex values
+    // Reset button zIndex values.
     var loop_counter = 80;
     do{
         document.getElementById(loop_counter).style.zIndex = 0;
@@ -27,15 +27,15 @@ function display_number_select(id){
       || selected_button != id){
         selected_button = id;
 
-        // increase zIndex of selected button
+        // Increase zIndex of selected button.
         document.getElementById(selected_button).style.zIndex = 2;
 
-        // display number-select behind selected button
+        // Display number-select behind selected button.
         update_number_select(id);
         document.getElementById('number-select').style.display = 'block';
 
     }else{
-        // hide number select
+        // Hide number select.
         selected_button = -1;
         document.getElementById('number-select').style.display = 'none';
     }
@@ -53,7 +53,7 @@ function generate_puzzle(confirmation_required){
         var second = 0;
         var which = 0;
 
-        // base sudoku puzzle
+        // Base sudoku puzzle.
         puzzle = [
           8,7,6,5,4,3,2,1,9,
           5,4,3,2,1,9,8,7,6,
@@ -63,19 +63,19 @@ function generate_puzzle(confirmation_required){
           1,9,8,7,6,5,4,3,2,
           6,5,4,3,2,1,9,8,7,
           3,2,1,9,8,7,6,5,4,
-          9,8,7,6,5,4,3,2,1
+          9,8,7,6,5,4,3,2,1,
         ];
 
-        // switch all instances of two random numbers 100 times
+        // Switch all instances of two random numbers 100 times.
         var loop_counter = 99;
         do{
-            // pick two different numbers between 1 and 9
+            // Pick two different numbers between 1 and 9.
             first = Math.ceil(Math.random() * 9);
             do{
                 second = Math.ceil(Math.random() * 9);
            }while(first == second);
 
-            // iterate through all buttons and switch those two numbers
+            // Iterate through all buttons and switch those two numbers.
             times = 80;
             do{
                 if(puzzle[times] == first){
@@ -87,20 +87,20 @@ function generate_puzzle(confirmation_required){
             }while(times--);
         }while(loop_counter--);
 
-        // switch columns between different blocks of 3 columns 100 times
+        // Switch columns between different blocks of 3 columns 100 times.
         loop_counter = 99;
         do{
-            // pick a column number to switch
+            // Pick a column number to switch.
             which = Math.floor(Math.random() * 3);
 
-            // pick two different blocks of 3 columns to switch the selected column number between
+            // Pick two different blocks of 3 columns to switch the selected column number between.
             first = Math.floor(Math.random() * 3);
             do{
                 second = Math.floor(Math.random() * 3);
             }while(first == second);
 
-            // iterate through each value in the selected column
-            // swap them between the two selected blocks of 3 columns
+            // Iterate through each value in the selected column.
+            // Swap them between the two selected blocks of 3 columns.
             times = 8;
             do{
                 var temp = puzzle[9 * times + 3 * first + which];
@@ -109,19 +109,19 @@ function generate_puzzle(confirmation_required){
             }while(times--);
         }while(loop_counter--);
 
-        // switch columns within a block of 3 columns 100 times
+        // Switch columns within a block of 3 columns 100 times.
         loop_counter = 99;
         do{
-            // pick the block of 3 columns in which to switch two columns
+            // Pick the block of 3 columns in which to switch two columns.
             which = Math.floor(Math.random() * 3);
 
-            // pick two different columns to switch
+            // Pick two different columns to switch.
             first = Math.floor(Math.random() * 3);
             do{
                 second = Math.floor(Math.random() * 3);
             }while(first == second);
 
-            // iterate through each value and swap the values between the two selected columns
+            // Iterate through each value and swap the values between the two selected columns.
             times = 8;
             do{
                 var temp = puzzle[9 * times + 3 * which + first];
@@ -130,19 +130,19 @@ function generate_puzzle(confirmation_required){
             }while(times--);
         }while(loop_counter--);
 
-        // switch random rows within a block of 3 rows 100 times
+        // Switch random rows within a block of 3 rows 100 times.
         loop_counter = 99;
         do{
-            // pick one of the 3 blocks of 3 rows
+            // Pick one of the 3 blocks of 3 rows.
             which = Math.floor(Math.random() * 3);
 
-            // pick two different rows
+            // Pick two different rows.
             first = Math.floor(Math.random() * 3);
             do{
                 second = Math.floor(Math.random() * 3);
             }while(first == second);
 
-            // iterate through each value and swap the values between the two selected rows
+            // Iterate through each value and swap the values between the two selected rows.
             times = 8;
             do{
                 var temp = puzzle[which * 27 + first * 9 + times];
@@ -151,7 +151,7 @@ function generate_puzzle(confirmation_required){
             }while(times--);
         }while(loop_counter--);
 
-        // reset all buttons
+        // Reset all buttons.
         loop_counter = 80;
         do{
             document.getElementById(loop_counter).disabled = 0;
@@ -160,7 +160,7 @@ function generate_puzzle(confirmation_required){
             document.getElementById(loop_counter).value = '';
         }while(loop_counter--);
 
-        // add solutions to some random buttons
+        // Add solutions to some random buttons.
         loop_counter = document.getElementById('locked').value - 1;
         do{
             first = Math.floor(Math.random() * 81);
@@ -191,7 +191,7 @@ function init(){
       ? 50
       : parseInt(window.localStorage.getItem('Sudoku.htm-y-margin'));
 
-    // create buttons and add to game-area
+    // Create buttons and add to game-area.
     var loop_counter = 80;
     var output = [''];
 
@@ -210,7 +210,7 @@ function init(){
     }while(loop_counter--);
     document.getElementById('game-area').innerHTML = output.join('');
 
-    // setup margins
+    // Setup margins.
     loop_counter = 8;
     do{
         document.getElementById(3 + 9 * loop_counter).style.marginRight = '5px';
@@ -223,12 +223,15 @@ function init(){
 }
 
 function reset(){
-    if(confirm('Reset settings?')){
-        document.getElementById('audio-volume').value = 1;
-        document.getElementById('locked').value = 15;
-        document.getElementById('y-margin').value = 50;
-        save();
+    if(!confirm('Reset settings?')){
+        return;
     }
+
+    document.getElementById('audio-volume').value = 1;
+    document.getElementById('locked').value = 15;
+    document.getElementById('y-margin').value = 50;
+
+    save();
 }
 
 function save(){
@@ -237,17 +240,17 @@ function save(){
         var id = [
           'audio-volume',
           'locked',
-          'y-margin'
+          'y-margin',
         ][loop_counter];
 
         if(isNaN(document.getElementById(id).value)
-          || document.getElementById(id).value === [1, 15, 50][loop_counter]
-          || document.getElementById(id).value < [0, 1, 0][loop_counter]){
+          || document.getElementById(id).value === [1, 15, 50,][loop_counter]
+          || document.getElementById(id).value < [0, 1, 0,][loop_counter]){
             window.localStorage.removeItem('Sudoku.htm-' + id);
             document.getElementById(id).value = [
               1,
               15,
-              50
+              50,
             ][loop_counter];
 
         }else{
@@ -279,7 +282,7 @@ function showhide(){
 }
 
 function update_number_select(id){
-    // make sure the number select box doesn't go past the left/right edges
+    // Make sure the number select box doesn't go past the left/right edges.
     var xpos = document.getElementById(id).offsetLeft - 50 - window.pageXOffset;
     if(xpos < 0){
         xpos = 0;
@@ -289,7 +292,7 @@ function update_number_select(id){
     }
     document.getElementById('number-select').style.left = xpos + 'px';
 
-    // there is no worry of the number select box going past the top/bottom edges
+    // There is no worry of the number select box going past the top/bottom edges.
     document.getElementById('number-select').style.top  =
       (document.getElementById(id).offsetTop  - 50 - window.pageYOffset)
       + 'px';
@@ -303,15 +306,17 @@ window.onkeydown = function(e){
     var key = window.event ? event : e;
     key = key.charCode ? key.charCode : key.keyCode;
 
-    if(key == 71){// G
+    // G: generate a new puzzle.
+    if(key == 71){
         generate_puzzle(1);
 
+    // C: check puzzle correctness.
     }else if(key == 67){
         check();
 
+    // ESC: hide number selection, if visible.
     }else if(selected_button != -1
-      && key == 27){// ESC
-        // hide number select
+      && key == 27){
         display_number_select(selected_button);
     }
 };
@@ -319,14 +324,14 @@ window.onkeydown = function(e){
 window.onload = init;
 
 window.onresize = function(e){
-    // update position of number select if visible
-    if(selected_button != -1){
+    // Update position of number select if visible.
+    if(selected_button == -1){
         update_number_select(selected_button);
     }
 };
 
 window.onscroll = function(e){
-    // update position of number select if visible
+    // Update position of number select if visible.
     if(selected_button != -1){
         update_number_select(selected_button);
     }
