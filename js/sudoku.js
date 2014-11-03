@@ -44,7 +44,7 @@ function display_number_select(id){
 function generate_puzzle(confirmation_required){
     if(!confirmation_required
       || confirm('Generate new puzzle?')){
-        document.getElementById('lol-a-table').style.marginTop =
+        document.getElementById('table').style.marginTop =
           parseInt(document.getElementById('y-margin').value)
           + 'px';
         save();
@@ -214,8 +214,8 @@ function init(){
     loop_counter = 8;
     do{
         document.getElementById(3 + 9 * loop_counter).style.marginRight = '5px';
-        document.getElementById(27 + loop_counter).style.marginBottom   = '5px';
-        document.getElementById(54 + loop_counter).style.marginBottom   = '5px';
+        document.getElementById(27 + loop_counter).style.marginBottom = '5px';
+        document.getElementById(54 + loop_counter).style.marginBottom = '5px';
         document.getElementById(6 + 9 * loop_counter).style.marginRight = '5px';
     }while(loop_counter--);
 
