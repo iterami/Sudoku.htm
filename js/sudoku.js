@@ -1,10 +1,10 @@
 function check(){
     // Check if every button has correct solution on it.
-    var win = 1;
+    var win = true;
     var loop_counter = 80;
     do{
         if(document.getElementById(loop_counter).value != puzzle[loop_counter]){
-            win = 0;
+            win = false;
             break;
         }
     }while(loop_counter--);
