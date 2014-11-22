@@ -303,8 +303,7 @@ var selected_button = -1;
 var times = 0;
 
 window.onkeydown = function(e){
-    var key = window.event ? event : e;
-    key = key.charCode ? key.charCode : key.keyCode;
+    var key = e.keyCode || e.which;
 
     // G: generate a new puzzle.
     if(key == 71){
