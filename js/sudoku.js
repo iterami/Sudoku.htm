@@ -180,48 +180,6 @@ function generate_puzzle(confirmation_required){
     }
 }
 
-function init(){
-    document.getElementById('audio-volume').value = window.localStorage.getItem('Sudoku.htm-audio-volume') === null
-      ? 1
-      : parseFloat(window.localStorage.getItem('Sudoku.htm-audio-volume'));
-    document.getElementById('locked').value = window.localStorage.getItem('Sudoku.htm-locked') === null
-      ? 15
-      : parseInt(window.localStorage.getItem('Sudoku.htm-locked'));
-    document.getElementById('y-margin').value = window.localStorage.getItem('Sudoku.htm-y-margin') === null
-      ? 50
-      : parseInt(window.localStorage.getItem('Sudoku.htm-y-margin'));
-
-    // Create buttons and add to game-area.
-    var loop_counter = 80;
-    var output = [''];
-
-    do{
-        output.push(
-          '<input class=buttons id='
-          + loop_counter
-          + ' onclick=display_number_select('
-          + loop_counter
-          + ') style=background:#333 type=button>'
-        );
-        if(loop_counter % 9 === 0
-          && loop_counter !== 0){
-            output.push('<br>');
-        }
-    }while(loop_counter--);
-    document.getElementById('game-area').innerHTML = output.join('');
-
-    // Setup margins.
-    loop_counter = 8;
-    do{
-        document.getElementById(3 + 9 * loop_counter).style.marginRight = '5px';
-        document.getElementById(27 + loop_counter).style.marginBottom = '5px';
-        document.getElementById(54 + loop_counter).style.marginBottom = '5px';
-        document.getElementById(6 + 9 * loop_counter).style.marginRight = '5px';
-    }while(loop_counter--);
-
-    generate_puzzle(0);
-}
-
 function reset(){
     if(!confirm('Reset settings?')){
         return;
@@ -320,7 +278,47 @@ window.onkeydown = function(e){
     }
 };
 
-window.onload = init;
+window.onload = function(){
+    document.getElementById('audio-volume').value = window.localStorage.getItem('Sudoku.htm-audio-volume') === null
+      ? 1
+      : parseFloat(window.localStorage.getItem('Sudoku.htm-audio-volume'));
+    document.getElementById('locked').value = window.localStorage.getItem('Sudoku.htm-locked') === null
+      ? 15
+      : parseInt(window.localStorage.getItem('Sudoku.htm-locked'));
+    document.getElementById('y-margin').value = window.localStorage.getItem('Sudoku.htm-y-margin') === null
+      ? 50
+      : parseInt(window.localStorage.getItem('Sudoku.htm-y-margin'));
+
+    // Create buttons and add to game-area.
+    var loop_counter = 80;
+    var output = [''];
+
+    do{
+        output.push(
+          '<input class=buttons id='
+          + loop_counter
+          + ' onclick=display_number_select('
+          + loop_counter
+          + ') style=background:#333 type=button>'
+        );
+        if(loop_counter % 9 === 0
+          && loop_counter !== 0){
+            output.push('<br>');
+        }
+    }while(loop_counter--);
+    document.getElementById('game-area').innerHTML = output.join('');
+
+    // Setup margins.
+    loop_counter = 8;
+    do{
+        document.getElementById(3 + 9 * loop_counter).style.marginRight = '5px';
+        document.getElementById(27 + loop_counter).style.marginBottom = '5px';
+        document.getElementById(54 + loop_counter).style.marginBottom = '5px';
+        document.getElementById(6 + 9 * loop_counter).style.marginRight = '5px';
+    }while(loop_counter--);
+
+    generate_puzzle(0);
+};
 
 window.onresize = function(e){
     // Update position of number select if visible.
