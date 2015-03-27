@@ -9,7 +9,7 @@ function check(){
         }
     }while(loop_counter--);
 
-    alert(
+    window.alert(
       win
         ? 'Correct! You win!'
         : 'Incorrect, try again.'
