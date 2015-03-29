@@ -41,9 +41,9 @@ function display_number_select(id){
     }
 }
 
-function generate_puzzle(confirmation_required){
-    if(confirmation_required
-      && !confirm('Generate new puzzle?')){
+function generate_puzzle(skip){
+    if(!skip
+      && !window.confirm('Generate new puzzle?')){
         return;
     }
 
@@ -183,7 +183,7 @@ function generate_puzzle(confirmation_required){
 }
 
 function reset(){
-    if(!confirm('Reset settings?')){
+    if(!window.confirm('Reset settings?')){
         return;
     }
 
