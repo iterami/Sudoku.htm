@@ -261,7 +261,7 @@ window.onkeydown = function(e){
 
     // G: generate a new puzzle.
     if(key == 71){
-        generate_puzzle(true);
+        generate_puzzle(false);
 
     // C: check puzzle correctness.
     }else if(key == 67){
@@ -275,15 +275,12 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(){
-    document.getElementById('audio-volume').value = window.localStorage.getItem('Sudoku.htm-audio-volume') === null
-      ? 1
-      : parseFloat(window.localStorage.getItem('Sudoku.htm-audio-volume'));
-    document.getElementById('locked').value = window.localStorage.getItem('Sudoku.htm-locked') === null
-      ? 15
-      : parseInt(window.localStorage.getItem('Sudoku.htm-locked'));
-    document.getElementById('y-margin').value = window.localStorage.getItem('Sudoku.htm-y-margin') === null
-      ? 50
-      : parseInt(window.localStorage.getItem('Sudoku.htm-y-margin'));
+    document.getElementById('audio-volume').value =
+      parseFloat(window.localStorage.getItem('Sudoku.htm-audio-volume')) || 1;
+    document.getElementById('locked').value =
+      parseInt(window.localStorage.getItem('Sudoku.htm-locked')) || 15;
+    document.getElementById('y-margin').value =
+      parseInt(window.localStorage.getItem('Sudoku.htm-y-margin')) || 50;
 
     // Create buttons and add to game-area.
     var loop_counter = 80;
@@ -313,7 +310,7 @@ window.onload = function(){
         document.getElementById(6 + 9 * loop_counter).style.marginRight = '5px';
     }while(loop_counter--);
 
-    generate_puzzle(false);
+    generate_puzzle(true);
 };
 
 window.onresize
