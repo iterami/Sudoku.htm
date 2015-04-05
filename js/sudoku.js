@@ -224,14 +224,18 @@ function select_number(number){
     document.getElementById('number-select').style.display = 'none';
 }
 
-function settings_toggle(){
-    if(document.getElementById('settings-button').value === '-'){
-        document.getElementById('settings-span').style.display = 'none';
-        document.getElementById('settings-button').value = '+';
+function settings_toggle(state){
+    state = state == undefined
+      ? document.getElementById('settings-button').value === '+'
+      : state;
 
-    }else{
+    if(state){
         document.getElementById('settings-span').style.display = 'inline';
         document.getElementById('settings-button').value = '-';
+
+    }else{
+        document.getElementById('settings-span').style.display = 'none';
+        document.getElementById('settings-button').value = '+';
     }
 }
 
@@ -271,6 +275,14 @@ window.onkeydown = function(e){
     }else if(selected_button != -1
       && key == 27){
         display_number_select(selected_button);
+
+    // +: show settings.
+    }else if(key === 187){
+        settings_toggle(true);
+
+    // -: hide settings.
+    }else if(key === 189){
+        settings_toggle(false);
     }
 };
 
