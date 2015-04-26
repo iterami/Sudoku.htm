@@ -41,6 +41,9 @@ input{
 #number-select a{
     font-size: 120%;
 }
+#settings-span{
+    display: none;
+}
 .settings-td{
     padding: 9px;
     text-align: left;
