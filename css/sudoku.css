@@ -6,10 +6,31 @@ a{
 a:hover{
     color: #777;
 }
+.big{
+    font-size: 123%;
+}
 body{
     background: #000;
     color: #aaa;
     font-family: sans-serif;
+}
+.bottom{
+    bottom: 0;
+    left: 10%;
+    position: absolute;
+}
+.buttons{
+    font-size: 200%;
+    height: 50px;
+    font-family: sans-serif;
+    margin: 1px;
+    position: relative;
+    vertical-align: top;
+    width: 50px;
+    z-index: 0;
+}
+#game-area{
+    min-width: 476px;
 }
 input{
     background: #000;
@@ -22,15 +43,12 @@ input[type=range]{
     cursor: pointer;
     width: 75px;
 }
-.buttons{
-    font-size: 200%;
-    height: 50px;
-    font-family: sans-serif;
-    margin: 1px;
-    position: relative;
-    vertical-align: top;
-    width: 50px;
-    z-index: 0;
+.left{
+    width: 50%;
+}
+#locked,
+#y-margin{
+    width: 75px;
 }
 #number-select{
     background: #222;
