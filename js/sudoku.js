@@ -1,3 +1,5 @@
+'use strict';
+
 function check(){
     // Check if every button has correct solution on it.
     var win = true;
