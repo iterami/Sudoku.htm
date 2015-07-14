@@ -227,7 +227,7 @@ function select_number(number){
 }
 
 function settings_toggle(state){
-    state = state == undefined
+    state = state == void(0)
       ? document.getElementById('settings-button').value === '+'
       : state;
 
