@@ -25,7 +25,7 @@ function display_number_select(id){
         document.getElementById(loop_counter).style.zIndex = 0;
     }while(loop_counter--);
 
-    if(selected_button == -1
+    if(selected_button === -1
       || selected_button != id){
         selected_button = id;
 
@@ -78,15 +78,15 @@ function generate_puzzle(skip){
         first = Math.ceil(Math.random() * 9);
         do{
             second = Math.ceil(Math.random() * 9);
-       }while(first == second);
+       }while(first === second);
 
         // Iterate through all buttons and switch those two numbers.
         times = 80;
         do{
-            if(puzzle[times] == first){
+            if(puzzle[times] === first){
                 puzzle[times] = second;
 
-            }else if(puzzle[times] == second){
+            }else if(puzzle[times] === second){
                 puzzle[times] = first;
             }
         }while(times--);
@@ -102,7 +102,7 @@ function generate_puzzle(skip){
         first = Math.floor(Math.random() * 3);
         do{
             second = Math.floor(Math.random() * 3);
-        }while(first == second);
+        }while(first === second);
 
         // Iterate through each value in the selected column.
         // Swap them between the two selected blocks of 3 columns.
@@ -124,7 +124,7 @@ function generate_puzzle(skip){
         first = Math.floor(Math.random() * 3);
         do{
             second = Math.floor(Math.random() * 3);
-        }while(first == second);
+        }while(first === second);
 
         // Iterate through each value and swap the values between the two selected columns.
         times = 8;
@@ -145,7 +145,7 @@ function generate_puzzle(skip){
         first = Math.floor(Math.random() * 3);
         do{
             second = Math.floor(Math.random() * 3);
-        }while(first == second);
+        }while(first === second);
 
         // Iterate through each value and swap the values between the two selected rows.
         times = 8;
@@ -266,16 +266,16 @@ window.onkeydown = function(e){
     var key = e.keyCode || e.which;
 
     // G: generate a new puzzle.
-    if(key == 71){
+    if(key === 71){
         generate_puzzle(false);
 
     // C: check puzzle correctness.
-    }else if(key == 67){
+    }else if(key === 67){
         check();
 
     // ESC: hide number selection, if visible.
     }else if(selected_button != -1
-      && key == 27){
+      && key === 27){
         display_number_select(selected_button);
 
     // +: show settings.
