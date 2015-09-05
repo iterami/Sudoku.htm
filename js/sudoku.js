@@ -300,22 +300,21 @@ window.onload = function(){
 
     // Create buttons and add to game-area.
     var loop_counter = 80;
-    var output = [''];
+    var output = '';
 
     do{
-        output.push(
+        output +=
           '<input class=buttons id='
           + loop_counter
           + ' onclick=display_number_select('
           + loop_counter
-          + ') style=background:#333 type=button>'
-        );
+          + ') style=background:#333 type=button>';
         if(loop_counter % 9 === 0
           && loop_counter !== 0){
-            output.push('<br>');
+            output += '<br>';
         }
     }while(loop_counter--);
-    document.getElementById('game-area').innerHTML = output.join('');
+    document.getElementById('game-area').innerHTML = output;
 
     // Setup margins.
     loop_counter = 8;
