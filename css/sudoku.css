@@ -44,9 +44,6 @@ input[type=range]{
     cursor: pointer;
     width: 75px;
 }
-.left{
-    width: 50%;
-}
 #locked,
 #y-margin{
     width: 75px;
