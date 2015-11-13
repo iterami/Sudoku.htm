@@ -3,23 +3,17 @@
 <title>Sudoku.htm</title>
 <link href=css/sudoku.css rel=stylesheet>
 
-<table id=table>
-    <tr>
-        <td class=left rowspan=2>
-        <td id=game-area>
-        <td class=settings-td rowspan=2>
-            <span id=settings-span>
-                <input id=audio-volume max=1 min=0 step=.01 type=range value=1>Audio<br>
-                <input id=locked maxlength=2 value=15>*2&gt; Locked<br>
-                <input id=y-margin value=50>Y Margin<br>
-                <input onclick=reset() type=button value=Reset>
-            </span>
-    <tr>
-        <td>
-            <input class=big onclick=generate_puzzle(false) type=button value="[G]enerate New Puzzle">
-            <input class=big onclick=check() type=button value="[C]heck My Solution">
-            <input id=settings-button onclick=settings_toggle() type=button value=+>
-</table>
+<div class=left rowspan=2></div>
+<div id=game-area></div>
+<input class=big onclick=generate_puzzle(false) type=button value="[G]enerate New Puzzle">
+<input class=big onclick=check() type=button value="[C]heck My Solution">
+<input id=settings-button onclick=settings_toggle() type=button value=+>
+<div id=settings rowspan=2>
+    <input id=audio-volume max=1 min=0 step=.01 type=range value=1>Audio<br>
+    <input id=locked maxlength=2 value=15>*2&gt; Locked<br>
+    <input id=y-margin value=50>Y Margin<br>
+    <input onclick=reset() type=button value=Reset>
+</div>
 
 <div id=number-select>
     <a onclick=select_number(1)>1</a>

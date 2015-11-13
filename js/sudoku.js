@@ -49,7 +49,7 @@ function generate_puzzle(skip){
         return;
     }
 
-    document.getElementById('table').style.marginTop =
+    document.getElementById('game-area').style.marginTop =
       parseInt(document.getElementById('y-margin').value)
       + 'px';
     save();
@@ -234,11 +234,11 @@ function settings_toggle(state){
       : state;
 
     if(state){
-        document.getElementById('settings-span').style.display = 'inline';
+        document.getElementById('settings').style.display = 'block';
         document.getElementById('settings-button').value = '-';
 
     }else{
-        document.getElementById('settings-span').style.display = 'none';
+        document.getElementById('settings').style.display = 'none';
         document.getElementById('settings-button').value = '+';
     }
 }
