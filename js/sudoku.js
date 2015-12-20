@@ -161,28 +161,31 @@ function generate_puzzle(skip){
     // Reset all buttons.
     loop_counter = 80;
     do{
-        document.getElementById(loop_counter).disabled = false;
-        document.getElementById(loop_counter).style.background = '#333';
-        document.getElementById(loop_counter).style.color = '#aaa';
-        document.getElementById(loop_counter).value = '';
+        var element = document.getElementById(loop_counter);
+        element.disabled = false;
+        element.style.background = '#333';
+        element.style.color = '#aaa';
+        element.value = '';
     }while(loop_counter--);
 
     // Add solutions to some random buttons.
     loop_counter = document.getElementById('locked').value - 1;
     do{
         first = Math.floor(Math.random() * 81);
+        var first_element = document.getElementById(first);
+        var element_80 = document.getElementById(80 - first);
 
-        document.getElementById(first).disabled = true;
-        document.getElementById(80 - first).disabled = true;
+        first_element.disabled = true;
+        element_80.disabled = true;
 
-        document.getElementById(first).style.background = '#777';
-        document.getElementById(80 - first).style.background = '#777';
+        first_element.style.background = '#777';
+        element_80.style.background = '#777';
 
-        document.getElementById(first).style.color = '#000';
-        document.getElementById(80 - first).style.color = '#000';
+        first_element.style.color = '#000';
+        element_80.style.color = '#000';
 
-        document.getElementById(first).value = puzzle[first];
-        document.getElementById(80 - first).value = puzzle[80 - first];
+        first_element.value = puzzle[first];
+        element_80.value = puzzle[80 - first];
     }while(loop_counter--);
 }
 
@@ -206,15 +209,16 @@ function save(){
       'y-margin': 50,
     };
     for(var id in ids){
-        if(isNaN(document.getElementById(id).value)
-          || document.getElementById(id).value == ids[id]){
+        var value = document.getElementById(id).value;
+        if(value == ids[id]
+          || isNaN(value)){
             window.localStorage.removeItem('Sudoku.htm-' + id);
             document.getElementById(id).value = ids[id];
 
         }else{
             window.localStorage.setItem(
               'Sudoku.htm-' + id,
-              document.getElementById(id).value
+              value
             );
         }
     }
@@ -252,10 +256,12 @@ function update_number_select(id){
     }else if(xpos > window.innerWidth - 150){
         xpos = window.innerWidth - 150;
     }
-    document.getElementById('number-select').style.left = xpos + 'px';
+
+    var number_select = document.getElementById('number-select');
+    number_select.style.left = xpos + 'px';
 
     // There is no worry of the number select box going past the top/bottom edges.
-    document.getElementById('number-select').style.top  =
+    number_select.style.top  =
       (document.getElementById(id).offsetTop  - 50 - window.pageYOffset)
       + 'px';
 }
