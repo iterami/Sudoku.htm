@@ -194,9 +194,14 @@ function reset(){
         return;
     }
 
-    document.getElementById('audio-volume').value = 1;
-    document.getElementById('locked').value = 15;
-    document.getElementById('y-margin').value = 50;
+    var ids = {
+      'audio-volume': 1,
+      'locked': 15,
+      'y-margin': 50,
+    };
+    for(var id in ids){
+        document.getElementById(id).value = ids[id];
+    }
 
     save();
 }
