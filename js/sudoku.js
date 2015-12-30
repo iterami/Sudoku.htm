@@ -217,6 +217,7 @@ function save(){
         var value = document.getElementById(id).value;
         if(value == ids[id]
           || isNaN(value)){
+            document.getElementById(id).value = ids[id];
             window.localStorage.removeItem('Sudoku.htm-' + id);
 
         }else{
