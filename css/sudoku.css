@@ -67,4 +67,5 @@ input[type=range]{
 }
 #settings{
     display: none;
+    text-align: left;
 }
