@@ -1,5 +1,5 @@
-Sudoku.htm
-----------
+iterami/Sudoku.htm
+------------------
 
 A web-based version of the classic game of sudoku.
 
