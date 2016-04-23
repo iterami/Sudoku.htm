@@ -51,11 +51,10 @@ function generate_puzzle(skip){
 
     save();
 
-    document.getElementById('game-area').style.marginTop =
-      parseInt(
-        document.getElementById('y-margin').value,
-        10
-      ) + 'px';
+    document.getElementById('game-area').style.marginTop = parseInt(
+      document.getElementById('y-margin').value,
+      10
+    ) + 'px';
 
     var first = 0;
     var second = 0;
