@@ -8,19 +8,7 @@
 <input class=big onclick=check() type=button value="[C]heck My Solution">
 <input id=settings-button onclick=settings_toggle() type=button value=+>
 <br>
-<table id=settings>
-    <tr>
-        <td><input id=audio-volume max=1 min=0 step=0.01 type=range value=1>
-        <td>Audio
-    <tr>
-        <td><input id=locked maxlength=2 value=15>
-        <td>*2 &gt; Locked
-    <tr>
-        <td><input id=y-margin value=50>
-        <td>Y Margin
-    <tr>
-        <td colspan=2><input onclick=reset() type=button value=Reset>
-</table>
+<table id=settings></table>
 
 <div id=number-select>
     <a onclick=select_number(1)>1</a>
@@ -37,4 +25,5 @@
     </div>
 </div>
 
+<script src=../common/js/settings.js></script>
 <script src=js/sudoku.js></script>

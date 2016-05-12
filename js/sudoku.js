@@ -52,7 +52,7 @@ function generate_puzzle(skip){
     save();
 
     document.getElementById('game-area').style.marginTop = parseInt(
-      document.getElementById('y-margin').value,
+      settings['y-margin'],
       10
     ) + 'px';
 
@@ -171,7 +171,7 @@ function generate_puzzle(skip){
     }while(loop_counter--);
 
     // Add solutions to some random buttons.
-    loop_counter = document.getElementById('locked').value - 1;
+    loop_counter = settings['locked'] - 1;
     if(loop_counter >= 0){
         do{
             first = Math.floor(Math.random() * 81);
@@ -190,46 +190,6 @@ function generate_puzzle(skip){
             first_element.value = puzzle[first];
             element_80.value = puzzle[80 - first];
         }while(loop_counter--);
-    }
-}
-
-function reset(){
-    if(!window.confirm('Reset settings?')){
-        return;
-    }
-
-    var ids = {
-      'audio-volume': 1,
-      'locked': 15,
-      'y-margin': 50,
-    };
-    for(var id in ids){
-        document.getElementById(id).value = ids[id];
-    }
-
-    save();
-}
-
-// Save settings into window.localStorage if they differ from default.
-function save(){
-    var ids = {
-      'audio-volume': 1,
-      'locked': 15,
-      'y-margin': 50,
-    };
-    for(var id in ids){
-        var value = document.getElementById(id).value;
-        if(value == ids[id]
-          || isNaN(value)){
-            document.getElementById(id).value = ids[id];
-            window.localStorage.removeItem('Sudoku.htm-' + id);
-
-        }else{
-            window.localStorage.setItem(
-              'Sudoku.htm-' + id,
-              value
-            );
-        }
     }
 }
 
@@ -306,18 +266,20 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(){
-    document.getElementById('audio-volume').value =
-      window.localStorage.getItem('Sudoku.htm-audio-volume') !== null
-        ? parseFloat(window.localStorage.getItem('Sudoku.htm-audio-volume'))
-        : 1;
-    document.getElementById('locked').value =
-      window.localStorage.getItem('Sudoku.htm-locked') !== null
-        ? parseFloat(window.localStorage.getItem('Sudoku.htm-locked'))
-        : 15;
-    document.getElementById('y-margin').value =
-      window.localStorage.getItem('Sudoku.htm-y-margin') !== null
-        ? parseFloat(window.localStorage.getItem('Sudoku.htm-y-margin'))
-        : 50;
+    init_settings(
+      'Sudoku.htm-',
+      {
+        'audio-volume': 1,
+        'locked': 15,
+        'y-margin': 50,
+      }
+    );
+
+    document.getElementById('settings').innerHTML =
+      '<tr><td><input id=audio-volume max=1 min=0 step=0.01 type=range value=' + settings['audio-volume'] + '><td>Audio'
+        + '<tr><td><input id=locked maxlength=2 value=' + settings['locked'] + '><td>*2 &gt; Locked'
+        + '<tr><td><input id=y-margin value=' + settings['y-margin'] + '><td>Y Margin'
+        + '<tr><td colspan=2><input onclick=reset() type=button value=Reset>';
 
     // Create buttons and add to game-area.
     var loop_counter = 80;
