@@ -12,3 +12,8 @@ Close Selection UI  | ESC
 Generate New Puzzle | G
 Hide Settings       | -
 Show Settings       | +
+
+---
+
+Requires:
+* [iterami/common](https://github.com/iterami/common)
