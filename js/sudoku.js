@@ -51,7 +51,7 @@ function generate_puzzle(skip){
 
     save();
 
-    document.getElementById('game-area').style.marginTop = parseInt(
+    document.getElementById('game-div').style.marginTop = parseInt(
       settings['y-margin'],
       10
     ) + 'px';
@@ -282,7 +282,7 @@ window.onload = function(){
         + '<tr><td colspan=2><input onclick=reset() type=button value=Reset>';
     update_settings();
 
-    // Create buttons and add to game-area.
+    // Create buttons and add to game-div.
     var loop_counter = 80;
     var output = '';
 
@@ -298,7 +298,7 @@ window.onload = function(){
             output += '<br>';
         }
     }while(loop_counter--);
-    document.getElementById('game-area').innerHTML = output;
+    document.getElementById('game-div').innerHTML = output;
 
     // Setup margins.
     loop_counter = 8;
