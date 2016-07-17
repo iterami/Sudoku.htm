@@ -276,10 +276,10 @@ window.onload = function(){
     );
 
     document.getElementById('settings').innerHTML =
-      '<tr><td><input id=audio-volume max=1 min=0 step=0.01 type=range><td>Audio'
+      '<tr><td colspan=2><input onclick=settings_reset() type=button value=Reset>'
+        + '<tr><td><input id=audio-volume max=1 min=0 step=0.01 type=range><td>Audio'
         + '<tr><td><input id=locked maxlength=2><td>*2 &gt; Locked'
-        + '<tr><td><input id=y-margin><td>Y Margin'
-        + '<tr><td colspan=2><input onclick=settings_reset() type=button value=Reset>';
+        + '<tr><td><input id=y-margin><td>Y Margin';
     settings_update();
 
     // Create buttons and add to game-div.
