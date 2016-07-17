@@ -49,10 +49,10 @@ function generate_puzzle(skip){
         return;
     }
 
-    save();
+    settings_save();
 
     document.getElementById('game-div').style.marginTop = parseInt(
-      settings['y-margin'],
+      settings_settings['y-margin'],
       10
     ) + 'px';
 
@@ -171,7 +171,7 @@ function generate_puzzle(skip){
     }while(loop_counter--);
 
     // Add solutions to some random buttons.
-    loop_counter = settings['locked'] - 1;
+    loop_counter = settings_settings['locked'] - 1;
     if(loop_counter >= 0){
         do{
             first = Math.floor(Math.random() * 81);
@@ -266,7 +266,7 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(){
-    init_settings(
+    settings_init(
       'Sudoku.htm-',
       {
         'audio-volume': 1,
@@ -279,8 +279,8 @@ window.onload = function(){
       '<tr><td><input id=audio-volume max=1 min=0 step=0.01 type=range><td>Audio'
         + '<tr><td><input id=locked maxlength=2><td>*2 &gt; Locked'
         + '<tr><td><input id=y-margin><td>Y Margin'
-        + '<tr><td colspan=2><input onclick=reset() type=button value=Reset>';
-    update_settings();
+        + '<tr><td colspan=2><input onclick=settings_reset() type=button value=Reset>';
+    settings_update();
 
     // Create buttons and add to game-div.
     var loop_counter = 80;
