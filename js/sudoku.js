@@ -79,9 +79,15 @@ function generate_puzzle(skip){
     var loop_counter = 99;
     do{
         // Pick two different numbers between 1 and 9.
-        first = random_integer(9) + 1;
+        first = random_integer(
+          9,
+          'ceil'
+        );
         do{
-            second = random_integer(9) + 1;
+            second = random_integer(
+              9,
+              'ceil'
+            );
         }while(first === second);
 
         // Iterate through all buttons and switch those two numbers.
