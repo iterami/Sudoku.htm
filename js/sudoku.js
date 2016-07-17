@@ -79,10 +79,10 @@ function generate_puzzle(skip){
     var loop_counter = 99;
     do{
         // Pick two different numbers between 1 and 9.
-        first = Math.ceil(Math.random() * 9);
+        first = random_integer(9) + 1;
         do{
-            second = Math.ceil(Math.random() * 9);
-       }while(first === second);
+            second = random_integer(9) + 1;
+        }while(first === second);
 
         // Iterate through all buttons and switch those two numbers.
         times = 80;
@@ -100,12 +100,12 @@ function generate_puzzle(skip){
     loop_counter = 99;
     do{
         // Pick a column number to switch.
-        which = Math.floor(Math.random() * 3);
+        which = random_integer(3);
 
         // Pick two different blocks of 3 columns to switch the selected column number between.
-        first = Math.floor(Math.random() * 3);
+        first = random_integer(3);
         do{
-            second = Math.floor(Math.random() * 3);
+            second = random_integer(3);
         }while(first === second);
 
         // Iterate through each value in the selected column.
@@ -122,12 +122,12 @@ function generate_puzzle(skip){
     loop_counter = 99;
     do{
         // Pick the block of 3 columns in which to switch two columns.
-        which = Math.floor(Math.random() * 3);
+        which = random_integer(3);
 
         // Pick two different columns to switch.
-        first = Math.floor(Math.random() * 3);
+        first = random_integer(3);
         do{
-            second = Math.floor(Math.random() * 3);
+            second = random_integer(3);
         }while(first === second);
 
         // Iterate through each value and swap the values between the two selected columns.
@@ -143,12 +143,12 @@ function generate_puzzle(skip){
     loop_counter = 99;
     do{
         // Pick one of the 3 blocks of 3 rows.
-        which = Math.floor(Math.random() * 3);
+        which = random_integer(3);
 
         // Pick two different rows.
-        first = Math.floor(Math.random() * 3);
+        first = random_integer(3);
         do{
-            second = Math.floor(Math.random() * 3);
+            second = random_integer(3);
         }while(first === second);
 
         // Iterate through each value and swap the values between the two selected rows.
@@ -174,7 +174,7 @@ function generate_puzzle(skip){
     loop_counter = settings_settings['locked'] - 1;
     if(loop_counter >= 0){
         do{
-            first = Math.floor(Math.random() * 81);
+            first = random_integer(81);
             var first_element = document.getElementById(first);
             var element_80 = document.getElementById(80 - first);
 
