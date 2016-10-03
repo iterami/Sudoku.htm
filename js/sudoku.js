@@ -316,6 +316,23 @@ window.onload = function(){
     }while(loop_counter--);
 
     generate_puzzle(true);
+
+    document.getElementById('check').onclick = check;
+    document.getElementById('generate').onclick = function(){
+        generate_puzzle(false);
+    };
+    document.getElementById('settings-button').onclick = function(){
+        settings_toggle();
+    };
+
+    // Setup select-X onclicks.
+    loop_counter = 9;
+    do{
+        document.getElementById('select-' + loop_counter).onclick = function(){
+            var id = this.id;
+            select_number(id.substring(id.indexOf('-') + 1));
+        };
+    }while(loop_counter--);
 };
 
 window.onresize

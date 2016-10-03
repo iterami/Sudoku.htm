@@ -4,24 +4,24 @@
 <link href=css/sudoku.css rel=stylesheet>
 
 <div id=game-div></div>
-<input class=big onclick=generate_puzzle(false) type=button value="[G]enerate New Puzzle">
-<input class=big onclick=check() type=button value="[C]heck My Solution">
-<input id=settings-button onclick=settings_toggle() type=button value=+>
+<input class=big id=generate type=button value="[G]enerate New Puzzle">
+<input class=big id=check type=button value="[C]heck My Solution">
+<input id=settings-button type=button value=+>
 <br>
 <table id=settings></table>
 
 <div id=number-select>
-    <a onclick=select_number(1)>1</a>
-    <a onclick=select_number(2)>2</a>
-    <a onclick=select_number(3)>3</a>
-    <a onclick=select_number(4)>4</a>
-    <a onclick=select_number(5)>5</a>
+    <a id=select-1>1</a>
+    <a id=select-2>2</a>
+    <a id=select-3>3</a>
+    <a id=select-4>4</a>
+    <a id=select-5>5</a>
     <div class=bottom>
-        <a onclick=select_number(6)>6</a>
-        <a onclick=select_number(7)>7</a>
-        <a onclick=select_number(8)>8</a>
-        <a onclick=select_number(9)>9</a>
-        <a onclick=select_number(0)>—</a>
+        <a id=select-6>6</a>
+        <a id=select-7>7</a>
+        <a id=select-8>8</a>
+        <a id=select-9>9</a>
+        <a id=select-0>—</a>
     </div>
 </div>
 
