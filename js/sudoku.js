@@ -272,14 +272,14 @@ window.onkeydown = function(e){
 };
 
 window.onload = function(){
-    settings_init(
-      'Sudoku.htm-',
-      {
+    settings_init({
+      'prefix': 'Sudoku.htm-',
+      'settings': {
         'audio-volume': 1,
         'locked': 15,
         'y-margin': 50,
-      }
-    );
+      },
+    });
 
     document.getElementById('settings').innerHTML =
       '<tr><td colspan=2><input onclick=settings_reset() type=button value=Reset>'
