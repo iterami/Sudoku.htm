@@ -265,32 +265,6 @@ var puzzle = [];
 var selected_button = -1;
 var times = 0;
 
-window.onkeydown = function(e){
-    var key = e.keyCode || e.which;
-
-    // G: generate a new puzzle.
-    if(key === 71){
-        generate_puzzle(false);
-
-    // C: check puzzle correctness.
-    }else if(key === 67){
-        check();
-
-    // ESC: hide number selection, if visible.
-    }else if(selected_button != -1
-      && key === 27){
-        display_number_select(selected_button);
-
-    // +: show settings.
-    }else if(key === 187){
-        settings_toggle(true);
-
-    // -: hide settings.
-    }else if(key === 189){
-        settings_toggle(false);
-    }
-};
-
 window.onload = function(){
     settings_init({
       'prefix': 'Sudoku.htm-',
@@ -353,12 +327,38 @@ window.onload = function(){
             select_number(id.substring(id.indexOf('-') + 1));
         };
     }while(loop_counter--);
-};
 
-window.onresize
-  = window.onscroll = function(e){
-    // Update position of number select if visible.
-    if(selected_button != -1){
-        update_number_select(selected_button);
-    }
+    window.onkeydown = function(e){
+        var key = e.keyCode || e.which;
+
+        // G: generate a new puzzle.
+        if(key === 71){
+            generate_puzzle(false);
+
+        // C: check puzzle correctness.
+        }else if(key === 67){
+            check();
+
+        // ESC: hide number selection, if visible.
+        }else if(selected_button != -1
+          && key === 27){
+            display_number_select(selected_button);
+
+        // +: show settings.
+        }else if(key === 187){
+            settings_toggle(true);
+
+        // -: hide settings.
+        }else if(key === 189){
+            settings_toggle(false);
+        }
+    };
+
+    window.onresize
+      = window.onscroll = function(e){
+        // Update position of number select if visible.
+        if(selected_button != -1){
+            update_number_select(selected_button);
+        }
+    };
 };
