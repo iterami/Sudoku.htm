@@ -21,6 +21,7 @@ body{
     position: absolute;
 }
 .buttons{
+    border: 0;
     font-size: 200%;
     height: 50px;
     font-family: sans-serif;
