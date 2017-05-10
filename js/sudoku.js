@@ -79,12 +79,12 @@ function generate_puzzle(skip){
     var loop_counter = 99;
     do{
         // Pick two different numbers between 1 and 9.
-        first = random_integer({
+        first = core_random_integer({
           'max': 9,
           'todo': 'ceil',
         });
         do{
-            second = random_integer({
+            second = core_random_integer({
               'max': 9,
               'todo': 'ceil',
             });
@@ -106,16 +106,16 @@ function generate_puzzle(skip){
     loop_counter = 99;
     do{
         // Pick a column number to switch.
-        which = random_integer({
+        which = core_random_integer({
           'max': 3,
         });
 
         // Pick two different blocks of 3 columns to switch the selected column number between.
-        first = random_integer({
+        first = core_random_integer({
           'max': 3,
         });
         do{
-            second = random_integer({
+            second = core_random_integer({
               'max': 3,
             });
         }while(first === second);
@@ -134,16 +134,16 @@ function generate_puzzle(skip){
     loop_counter = 99;
     do{
         // Pick the block of 3 columns in which to switch two columns.
-        which = random_integer({
+        which = core_random_integer({
           'max': 3,
         });
 
         // Pick two different columns to switch.
-        first = random_integer({
+        first = core_random_integer({
           'max': 3,
         });
         do{
-            second = random_integer({
+            second = core_random_integer({
               'max': 3,
             });
         }while(first === second);
@@ -161,16 +161,16 @@ function generate_puzzle(skip){
     loop_counter = 99;
     do{
         // Pick one of the 3 blocks of 3 rows.
-        which = random_integer({
+        which = core_random_integer({
           'max': 3,
         });
 
         // Pick two different rows.
-        first = random_integer({
+        first = core_random_integer({
           'max': 3,
         });
         do{
-            second = random_integer({
+            second = core_random_integer({
               'max': 3,
             });
         }while(first === second);
@@ -198,7 +198,7 @@ function generate_puzzle(skip){
     loop_counter = storage_data['locked'] - 1;
     if(loop_counter >= 0){
         do{
-            first = random_integer({
+            first = core_random_integer({
               'max': 81,
             });
             var first_element = document.getElementById(first);
