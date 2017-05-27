@@ -191,7 +191,8 @@ function generate_puzzle(skip){
         element.disabled = false;
         element.style.background = '#333';
         element.style.color = '#aaa';
-        element.value = '';
+        element.style.position = 'relative';
+        element.value = ' ';
     }while(loop_counter--);
 
     // Add solutions to some random buttons.
@@ -222,7 +223,7 @@ function generate_puzzle(skip){
 function select_number(number){
     document.getElementById(selected_button).value = number > 0
       ? number
-      : '';
+      : ' ';
     selected_button = -1;
     document.getElementById('number-select').style.display = 'none';
 }
@@ -285,14 +286,13 @@ window.onload = function(){
     // Create buttons and add to game-div.
     var loop_counter = 80;
     var output = '';
-
     do{
         output +=
-          '<input class=buttons id='
+          '<input class=gridbuttonclickable id='
           + loop_counter
           + ' onclick=display_number_select('
           + loop_counter
-          + ') style=background:#333 type=button>';
+          + ') type=button>';
         if(loop_counter % 9 === 0
           && loop_counter !== 0){
             output += '<br>';
@@ -308,6 +308,10 @@ window.onload = function(){
         document.getElementById(54 + loop_counter).style.marginBottom = '5px';
         document.getElementById(6 + 9 * loop_counter).style.marginRight = '5px';
     }while(loop_counter--);
+
+    // Setup number-select.
+    document.getElementById('number-select').style.position = 'fixed';
+    document.getElementById('number-select').style.zIndex = 1;
 
     generate_puzzle(true);
 
