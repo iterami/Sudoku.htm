@@ -220,53 +220,7 @@ function generate_puzzle(skip){
     }
 }
 
-function select_number(number){
-    document.getElementById(selected_button).value = number > 0
-      ? number
-      : ' ';
-    selected_button = -1;
-    document.getElementById('number-select').style.display = 'none';
-}
-
-function settings_toggle(state){
-    state = state == void 0
-      ? document.getElementById('settings-button').value === '+'
-      : state;
-
-    if(state){
-        document.getElementById('settings').style.display = 'inline-block';
-        document.getElementById('settings-button').value = '-';
-
-    }else{
-        document.getElementById('settings').style.display = 'none';
-        document.getElementById('settings-button').value = '+';
-    }
-}
-
-function update_number_select(id){
-    // Make sure the number select box doesn't go past the left/right edges.
-    var xpos = document.getElementById(id).offsetLeft - 50 - window.pageXOffset;
-    if(xpos < 0){
-        xpos = 0;
-
-    }else if(xpos > window.innerWidth - 150){
-        xpos = window.innerWidth - 150;
-    }
-
-    var number_select = document.getElementById('number-select');
-    number_select.style.left = xpos + 'px';
-
-    // There is no worry of the number select box going past the top/bottom edges.
-    number_select.style.top  =
-      (document.getElementById(id).offsetTop  - 50 - window.pageYOffset)
-      + 'px';
-}
-
-var puzzle = [];
-var selected_button = -1;
-var times = 0;
-
-window.onload = function(){
+function repo_init(){
     core_storage_init({
       'data': {
         'audio-volume': 1,
@@ -365,4 +319,50 @@ window.onload = function(){
             update_number_select(selected_button);
         }
     };
-};
+}
+
+function select_number(number){
+    document.getElementById(selected_button).value = number > 0
+      ? number
+      : ' ';
+    selected_button = -1;
+    document.getElementById('number-select').style.display = 'none';
+}
+
+function settings_toggle(state){
+    state = state == void 0
+      ? document.getElementById('settings-button').value === '+'
+      : state;
+
+    if(state){
+        document.getElementById('settings').style.display = 'inline-block';
+        document.getElementById('settings-button').value = '-';
+
+    }else{
+        document.getElementById('settings').style.display = 'none';
+        document.getElementById('settings-button').value = '+';
+    }
+}
+
+function update_number_select(id){
+    // Make sure the number select box doesn't go past the left/right edges.
+    var xpos = document.getElementById(id).offsetLeft - 100 - window.pageXOffset;
+    if(xpos < 0){
+        xpos = 0;
+
+    }else if(xpos > window.innerWidth - 150){
+        xpos = window.innerWidth - 150;
+    }
+
+    var number_select = document.getElementById('number-select');
+    number_select.style.left = xpos + 'px';
+
+    // There is no worry of the number select box going past the top/bottom edges.
+    number_select.style.top  =
+      (document.getElementById(id).offsetTop  - 50 - window.pageYOffset)
+      + 'px';
+}
+
+var puzzle = [];
+var selected_button = -1;
+var times = 0;
