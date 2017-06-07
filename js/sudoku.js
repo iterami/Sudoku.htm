@@ -221,13 +221,13 @@ function generate_puzzle(skip){
 }
 
 function repo_init(){
-    core_storage_init({
-      'data': {
+    core_repo_init({
+      'storage': {
         'audio-volume': 1,
         'locked': 15,
         'y-margin': 50,
       },
-      'prefix': 'Sudoku.htm-',
+      'title': 'Sudoku.htm',
     });
 
     document.getElementById('settings').innerHTML =
