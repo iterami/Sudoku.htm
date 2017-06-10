@@ -220,8 +220,34 @@ function generate_puzzle(skip){
     }
 }
 
+function repo_escape(){
+    if(selected_button != -1){
+        display_number_select(selected_button);
+    }
+}
+
 function repo_init(){
     core_repo_init({
+      'keybinds': {
+        67: {
+          'todo': check,
+        },
+        71: {
+          'todo': function(){
+              generate_puzzle(false);
+          },
+        },
+        187: {
+          'todo': function(){
+              settings_toggle(true);
+          },
+        },
+        189: {
+          'todo': function(){
+              settings_toggle(false);
+          },
+        },
+      },
       'storage': {
         'audio-volume': 1,
         'locked': 15,
@@ -285,32 +311,6 @@ function repo_init(){
             select_number(id.substring(id.indexOf('-') + 1));
         };
     }while(loop_counter--);
-
-    window.onkeydown = function(e){
-        var key = e.keyCode || e.which;
-
-        // G: generate a new puzzle.
-        if(key === 71){
-            generate_puzzle(false);
-
-        // C: check puzzle correctness.
-        }else if(key === 67){
-            check();
-
-        // ESC: hide number selection, if visible.
-        }else if(selected_button != -1
-          && key === 27){
-            display_number_select(selected_button);
-
-        // +: show settings.
-        }else if(key === 187){
-            settings_toggle(true);
-
-        // -: hide settings.
-        }else if(key === 189){
-            settings_toggle(false);
-        }
-    };
 
     window.onresize
       = window.onscroll = function(e){
