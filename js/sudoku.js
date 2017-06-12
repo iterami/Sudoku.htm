@@ -237,31 +237,14 @@ function repo_init(){
               generate_puzzle(false);
           },
         },
-        187: {
-          'todo': function(){
-              settings_toggle(true);
-          },
-        },
-        189: {
-          'todo': function(){
-              settings_toggle(false);
-          },
-        },
       },
       'storage': {
-        'audio-volume': 1,
         'locked': 15,
         'y-margin': 50,
       },
+      'storage-menu': '<input id=locked maxlength=2>*2 &gt; Locked<br><input id=y-margin>Y Margin',
       'title': 'Sudoku.htm',
     });
-
-    document.getElementById('settings').innerHTML =
-      '<tr><td colspan=2><input onclick=core_storage_reset() type=button value=Reset>'
-        + '<tr><td><input id=audio-volume max=1 min=0 step=0.01 type=range><td>Audio'
-        + '<tr><td><input id=locked maxlength=2><td>*2 &gt; Locked'
-        + '<tr><td><input id=y-margin><td>Y Margin';
-    core_storage_update();
 
     // Create buttons and add to game-div.
     var loop_counter = 80;
@@ -299,9 +282,6 @@ function repo_init(){
     document.getElementById('generate').onclick = function(){
         generate_puzzle(false);
     };
-    document.getElementById('settings-button').onclick = function(){
-        settings_toggle();
-    };
 
     // Setup select-X onclicks.
     loop_counter = 9;
@@ -327,21 +307,6 @@ function select_number(number){
       : ' ';
     selected_button = -1;
     document.getElementById('number-select').style.display = 'none';
-}
-
-function settings_toggle(state){
-    state = state == void 0
-      ? document.getElementById('settings-button').value === '+'
-      : state;
-
-    if(state){
-        document.getElementById('settings').style.display = 'inline-block';
-        document.getElementById('settings-button').value = '-';
-
-    }else{
-        document.getElementById('settings').style.display = 'none';
-        document.getElementById('settings-button').value = '+';
-    }
 }
 
 function update_number_select(id){
