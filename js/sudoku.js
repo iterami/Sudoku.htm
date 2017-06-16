@@ -242,7 +242,7 @@ function repo_init(){
         'locked': 15,
         'y-margin': 50,
       },
-      'storage-menu': '<input id=locked maxlength=2>*2 &gt; Locked<br><input id=y-margin>Y Margin',
+      'storage-menu': '<table><tr><td><input id=locked maxlength=2><td>*2 &gt; Locked<tr><td><input id=y-margin><td>Y Margin</table>',
       'title': 'Sudoku.htm',
     });
 
