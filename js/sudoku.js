@@ -51,11 +51,6 @@ function generate_puzzle(skip){
 
     core_storage_save();
 
-    document.getElementById('game-div').style.marginTop = parseInt(
-      core_storage_data['y-margin'],
-      10
-    ) + 'px';
-
     var first = 0;
     var second = 0;
     var which = 0;
@@ -240,9 +235,8 @@ function repo_init(){
       },
       'storage': {
         'locked': 15,
-        'y-margin': 50,
       },
-      'storage-menu': '<table><tr><td><input id=locked maxlength=2><td>*2 &gt; Locked<tr><td><input id=y-margin><td>Y Margin</table>',
+      'storage-menu': '<table><tr><td><input id=locked maxlength=2><td>*2 &gt; Locked</table>',
       'title': 'Sudoku.htm',
     });
 
