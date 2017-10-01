@@ -43,12 +43,7 @@ function display_number_select(id){
     }
 }
 
-function generate_puzzle(skip){
-    if(!skip
-      && !window.confirm('Generate new puzzle?')){
-        return;
-    }
-
+function generate_puzzle(){
     core_storage_save();
 
     var first = 0;
@@ -223,16 +218,7 @@ function repo_escape(){
 
 function repo_init(){
     core_repo_init({
-      'keybinds': {
-        67: {
-          'todo': check,
-        },
-        71: {
-          'todo': function(){
-              generate_puzzle(false);
-          },
-        },
-      },
+      'info': '<input id=generate type=button value="Generate New Puzzle"><input id=check type=button value="Check Solution">',
       'storage': {
         'locked': 15,
       },
@@ -270,11 +256,11 @@ function repo_init(){
     document.getElementById('number-select').style.position = 'fixed';
     document.getElementById('number-select').style.zIndex = 1;
 
-    generate_puzzle(true);
+    generate_puzzle();
 
     document.getElementById('check').onclick = check;
     document.getElementById('generate').onclick = function(){
-        generate_puzzle(false);
+        generate_puzzle();
     };
 
     // Setup select-X onclicks.
