@@ -241,7 +241,9 @@ function repo_init(){
             output += '<br>';
         }
     }while(loop_counter--);
-    document.getElementById('game-div').innerHTML = output;
+    var element = document.getElementById('game-div');
+    element.innerHTML = output;
+    element.style.marginTop = '50px';
 
     // Setup margins.
     loop_counter = 8;
