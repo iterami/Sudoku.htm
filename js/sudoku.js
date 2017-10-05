@@ -253,8 +253,9 @@ function repo_init(){
     }while(loop_counter--);
 
     // Setup number-select.
-    document.getElementById('number-select').style.position = 'fixed';
-    document.getElementById('number-select').style.zIndex = 1;
+    var element = document.getElementById('number-select');
+    element.style.position = 'fixed';
+    element.style.zIndex = 1;
 
     generate_puzzle();
 
