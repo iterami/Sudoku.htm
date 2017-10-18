@@ -9,6 +9,14 @@ function repo_escape(){
 function repo_init(){
     core_repo_init({
       'info': '<input id=generate type=button value="Generate New Puzzle"><input id=check type=button value="Check Solution">',
+      'info-events': {
+        'check': {
+          'todo': check,
+        },
+        'generate': {
+          'todo': generate_puzzle,
+        },
+      },
       'storage': {
         'locked': 15,
       },
@@ -50,11 +58,6 @@ function repo_init(){
     element.style.zIndex = 1;
 
     generate_puzzle();
-
-    document.getElementById('check').onclick = check;
-    document.getElementById('generate').onclick = function(){
-        generate_puzzle();
-    };
 
     // Setup select-X onclicks.
     loop_counter = 9;
