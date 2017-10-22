@@ -192,20 +192,17 @@ function generate_puzzle(){
             first = core_random_integer({
               'max': 81,
             });
-            var first_element = document.getElementById(first);
-            var element_80 = document.getElementById(80 - first);
+            var element = document.getElementById(first);
+            element.disabled = true;
+            element.style.background = '#777';
+            element.style.color = '#000';
+            element.value = puzzle[first];
 
-            first_element.disabled = true;
-            element_80.disabled = true;
-
-            first_element.style.background = '#777';
-            element_80.style.background = '#777';
-
-            first_element.style.color = '#000';
-            element_80.style.color = '#000';
-
-            first_element.value = puzzle[first];
-            element_80.value = puzzle[80 - first];
+            element = document.getElementById(80 - first);
+            element.disabled = true;
+            element.style.background = '#777';
+            element.style.color = '#000';
+            element.value = puzzle[80 - first];
         }while(loop_counter--);
     }
 }
