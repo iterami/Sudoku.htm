@@ -81,7 +81,7 @@ function generate_puzzle(){
         }while(first === second);
 
         // Iterate through all buttons and switch those two numbers.
-        times = 80;
+        var times = 80;
         do{
             if(puzzle[times] === first){
                 puzzle[times] = second;
@@ -112,7 +112,7 @@ function generate_puzzle(){
 
         // Iterate through each value in the selected column.
         // Swap them between the two selected blocks of 3 columns.
-        times = 8;
+        var times = 8;
         do{
             var temp = puzzle[9 * times + 3 * first + which];
             puzzle[9 * times + 3 * first + which] = puzzle[9 * times + 3 * second + which];
@@ -139,7 +139,7 @@ function generate_puzzle(){
         }while(first === second);
 
         // Iterate through each value and swap the values between the two selected columns.
-        times = 8;
+        var times = 8;
         do{
             var temp = puzzle[9 * times + 3 * which + first];
             puzzle[9 * times + 3 * which + first] = puzzle[9 * times + 3 * which + second];
@@ -166,7 +166,7 @@ function generate_puzzle(){
         }while(first === second);
 
         // Iterate through each value and swap the values between the two selected rows.
-        times = 8;
+        var times = 8;
         do{
             var temp = puzzle[which * 27 + first * 9 + times];
             puzzle[which * 27 + first * 9 + times] = puzzle[which * 27 + second * 9 + times];
@@ -233,7 +233,3 @@ function update_number_select(id){
       (document.getElementById(id).offsetTop  - 50 - window.pageYOffset)
       + 'px';
 }
-
-var puzzle = [];
-var selected_button = -1;
-var times = 0;
