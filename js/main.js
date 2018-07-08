@@ -29,8 +29,8 @@ function repo_init(){
     });
 
     // Create buttons and add to game-div.
-    var loop_counter = 80;
-    var output = '';
+    let loop_counter = 80;
+    let output = '';
     do{
         output +=
           '<input class=gridbuttonclickable id='
@@ -43,7 +43,7 @@ function repo_init(){
             output += '<br>';
         }
     }while(loop_counter--);
-    var element = document.getElementById('game-div');
+    let element = document.getElementById('game-div');
     element.innerHTML = output;
     element.style.marginTop = '50px';
 
@@ -57,7 +57,7 @@ function repo_init(){
     }while(loop_counter--);
 
     // Setup number-select.
-    var element = document.getElementById('number-select');
+    element = document.getElementById('number-select');
     element.style.position = 'fixed';
     element.style.zIndex = 1;
 
@@ -67,7 +67,7 @@ function repo_init(){
     loop_counter = 9;
     do{
         document.getElementById('select-' + loop_counter).onclick = function(){
-            var id = this.id;
+            let id = this.id;
             select_number(id.substring(id.indexOf('-') + 1));
         };
     }while(loop_counter--);
