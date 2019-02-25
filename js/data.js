@@ -216,8 +216,10 @@ function select_number(number){
 }
 
 function update_number_select(id){
+    let element = document.getElementById(id);
+
     // Make sure the number select box doesn't go past the left/right edges.
-    let xpos = document.getElementById(id).offsetLeft - 100 - window.pageXOffset;
+    let xpos = element.offsetLeft - 100 - window.pageXOffset;
     if(xpos < 0){
         xpos = 0;
 
@@ -229,7 +231,5 @@ function update_number_select(id){
     number_select.style.left = xpos + 'px';
 
     // There is no worry of the number select box going past the top/bottom edges.
-    number_select.style.top  =
-      (document.getElementById(id).offsetTop  - 50 - window.pageYOffset)
-      + 'px';
+    number_select.style.top = (element.offsetTop  - 50 - window.pageYOffset) + 'px';
 }
