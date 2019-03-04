@@ -46,7 +46,7 @@ function repo_init(){
     let element = document.getElementById('game-div');
     element.innerHTML = output;
     element.style.marginTop = '50px';
-    element.style.minWidth = '500px';
+    element.style.minWidth = '555px';
 
     // Setup margins.
     loop_counter = 8;
