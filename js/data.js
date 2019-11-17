@@ -5,7 +5,7 @@ function check(){
     let win = true;
     let loop_counter = 80;
     do{
-        if(document.getElementById(loop_counter).value != puzzle[loop_counter]){
+        if(document.getElementById(loop_counter).value !== puzzle[loop_counter]){
             win = false;
             break;
         }
@@ -26,7 +26,7 @@ function display_number_select(id){
     }while(loop_counter--);
 
     if(selected_button === -1
-      || selected_button != id){
+      || selected_button !== id){
         selected_button = id;
 
         // Increase zIndex of selected button.

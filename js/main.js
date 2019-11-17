@@ -1,7 +1,7 @@
 'use strict';
 
 function repo_escape(){
-    if(selected_button != -1){
+    if(selected_button !== -1){
         display_number_select(selected_button);
     }
 }
@@ -77,7 +77,7 @@ function repo_init(){
     window.onresize
       = window.onscroll = function(e){
         // Update position of number select if visible.
-        if(selected_button != -1){
+        if(selected_button !== -1){
             update_number_select(selected_button);
         }
     };
