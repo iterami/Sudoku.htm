@@ -114,7 +114,7 @@ function generate_puzzle(){
         // Swap them between the two selected blocks of 3 columns.
         let times = 8;
         do{
-            let temp = puzzle[9 * times + 3 * first + which];
+            const temp = puzzle[9 * times + 3 * first + which];
             puzzle[9 * times + 3 * first + which] = puzzle[9 * times + 3 * second + which];
             puzzle[9 * times + 3 * second + which] = temp;
         }while(times--);
@@ -141,7 +141,7 @@ function generate_puzzle(){
         // Iterate through each value and swap the values between the two selected columns.
         let times = 8;
         do{
-            let temp = puzzle[9 * times + 3 * which + first];
+            const temp = puzzle[9 * times + 3 * which + first];
             puzzle[9 * times + 3 * which + first] = puzzle[9 * times + 3 * which + second];
             puzzle[9 * times + 3 * which + second] = temp;
         }while(times--);
@@ -168,7 +168,7 @@ function generate_puzzle(){
         // Iterate through each value and swap the values between the two selected rows.
         let times = 8;
         do{
-            let temp = puzzle[which * 27 + first * 9 + times];
+            const temp = puzzle[which * 27 + first * 9 + times];
             puzzle[which * 27 + first * 9 + times] = puzzle[which * 27 + second * 9 + times];
             puzzle[which * 27 + second * 9 + times] = temp;
         }while(times--);
@@ -177,7 +177,7 @@ function generate_puzzle(){
     // Reset all buttons.
     loop_counter = 80;
     do{
-        let element = document.getElementById(loop_counter);
+        const element = document.getElementById(loop_counter);
         element.disabled = false;
         element.style.background = '#333';
         element.style.color = '#aaa';
@@ -216,7 +216,7 @@ function select_number(number){
 }
 
 function update_number_select(id){
-    let element = document.getElementById(id);
+    const element = document.getElementById(id);
 
     // Make sure the number select box doesn't go past the left/right edges.
     let xpos = element.offsetLeft - 100 - window.pageXOffset;
@@ -227,7 +227,7 @@ function update_number_select(id){
         xpos = window.innerWidth - 150;
     }
 
-    let number_select = document.getElementById('number-select');
+    const number_select = document.getElementById('number-select');
     number_select.style.left = xpos + 'px';
 
     // There is no worry of the number select box going past the top/bottom edges.

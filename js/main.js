@@ -69,7 +69,7 @@ function repo_init(){
     loop_counter = 9;
     do{
         document.getElementById('select-' + loop_counter).onclick = function(){
-            let id = this.id;
+            const id = this.id;
             select_number(id.substring(id.indexOf('-') + 1));
         };
     }while(loop_counter--);
