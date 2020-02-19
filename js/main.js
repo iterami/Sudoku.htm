@@ -74,8 +74,8 @@ function repo_init(){
         };
     }while(loop_counter--);
 
-    window.onresize
-      = window.onscroll = function(e){
+    globalThis.onresize
+      = globalThis.onscroll = function(e){
         // Update position of number select if visible.
         if(selected_button !== -1){
             update_number_select(selected_button);

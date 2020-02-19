@@ -11,7 +11,7 @@ function check(){
         }
     }while(loop_counter--);
 
-    window.alert(
+    globalThis.alert(
       win
         ? 'Correct! You win!'
         : 'Incorrect, try again.'
@@ -219,17 +219,17 @@ function update_number_select(id){
     const element = document.getElementById(id);
 
     // Make sure the number select box doesn't go past the left/right edges.
-    let xpos = element.offsetLeft - 100 - window.pageXOffset;
+    let xpos = element.offsetLeft - 100 - globalThis.pageXOffset;
     if(xpos < 0){
         xpos = 0;
 
-    }else if(xpos > window.innerWidth - 150){
-        xpos = window.innerWidth - 150;
+    }else if(xpos > globalThis.innerWidth - 150){
+        xpos = globalThis.innerWidth - 150;
     }
 
     const number_select = document.getElementById('number-select');
     number_select.style.left = xpos + 'px';
 
     // There is no worry of the number select box going past the top/bottom edges.
-    number_select.style.top = (element.offsetTop  - 50 - window.pageYOffset) + 'px';
+    number_select.style.top = (element.offsetTop  - 50 - globalThis.pageYOffset) + 'px';
 }
