@@ -2,20 +2,30 @@
 
 function check(){
     // Check if every button has correct solution on it.
+    let complete = true;
     let win = true;
     let loop_counter = 80;
     do{
-        if(Number(document.getElementById(loop_counter).value) !== puzzle[loop_counter]){
+        const button_value = document.getElementById(loop_counter).value;
+
+        if(Number(button_value) !== puzzle[loop_counter]){
+            if(button_value === ' '){
+                complete = false;
+            }
             win = false;
             break;
         }
     }while(loop_counter--);
 
-    globalThis.alert(
-      win
-        ? 'Correct! You win!'
-        : 'Incorrect, try again.'
-    );
+    let message = 'Correct!';
+    if(!complete){
+        message = 'You must fill in all the numbers.';
+
+    }else if(!win){
+        message = 'Incorrect! Try again.';
+    }
+
+    globalThis.alert(message);
 }
 
 function display_number_select(id){
