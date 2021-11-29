@@ -5,7 +5,7 @@ function check(){
     let win = true;
     let loop_counter = 80;
     do{
-        if(document.getElementById(loop_counter).value !== puzzle[loop_counter]){
+        if(Number(document.getElementById(loop_counter).value) !== puzzle[loop_counter]){
             win = false;
             break;
         }
@@ -205,6 +205,32 @@ function generate_puzzle(){
             element.value = puzzle[80 - first];
         }while(loop_counter--);
     }
+}
+
+function hint(){
+    const valid = [];
+
+    var loop_counter = 80;
+    do{
+        if(!document.getElementById(loop_counter).disabled){
+            valid.push(loop_counter);
+        }
+    }while(loop_counter--);
+
+    if(valid.length === 0){
+        return;
+    }
+
+    document.getElementById('number-select').style.display = 'none';
+
+    const random_button = core_random_integer({
+      'max': valid.length,
+    });
+    const element = document.getElementById(valid[random_button]);
+    element.disabled = true;
+    element.style.background = '#700';
+    element.style.color = '#fff';
+    element.value = puzzle[valid[random_button]];
 }
 
 function select_number(number){

@@ -15,12 +15,16 @@ function repo_init(){
         'generate': {
           'onclick': generate_puzzle,
         },
+        'hint': {
+          'onclick': hint,
+        },
       },
       'globals': {
         'puzzle': [],
         'selected_button': -1,
       },
-      'info': '<input id=generate type=button value="Generate New Puzzle"><input id=check type=button value="Check Solution">',
+      'info': '<input id=generate type=button value="Generate New Puzzle"><br>'
+        + '<input id=hint type=button value="Add 1 Hint"><input id=check type=button value="Check Solution">',
       'menu': true,
       'storage': {
         'locked': 15,
