@@ -212,7 +212,7 @@ function hint(){
 
     var loop_counter = 80;
     do{
-        if(!document.getElementById(loop_counter).disabled){
+        if(document.getElementById(loop_counter).value === ' '){
             valid.push(loop_counter);
         }
     }while(loop_counter--);
