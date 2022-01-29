@@ -1,7 +1,6 @@
 'use strict';
 
 function check(){
-    // Check if every button has correct solution on it.
     let complete = true;
     let win = true;
     let loop_counter = 80;
@@ -29,7 +28,6 @@ function check(){
 }
 
 function display_number_select(id){
-    // Reset button zIndex values.
     let loop_counter = 80;
     do{
         document.getElementById(loop_counter).style.zIndex = 0;
@@ -38,16 +36,11 @@ function display_number_select(id){
     if(selected_button === -1
       || selected_button !== id){
         selected_button = id;
-
-        // Increase zIndex of selected button.
         document.getElementById(selected_button).style.zIndex = 2;
-
-        // Display number-select behind selected button.
         update_number_select(id);
         document.getElementById('number-select').style.display = 'block';
 
     }else{
-        // Hide number select.
         selected_button = -1;
         document.getElementById('number-select').style.display = 'none';
     }
@@ -60,7 +53,6 @@ function generate_puzzle(){
     let second = 0;
     let which = 0;
 
-    // Base sudoku puzzle.
     puzzle = [
       8,7,6, 5,4,3, 2,1,9,
       5,4,3, 2,1,9, 8,7,6,
@@ -75,10 +67,8 @@ function generate_puzzle(){
       9,8,7, 6,5,4, 3,2,1,
     ];
 
-    // Switch all instances of two random numbers 100 times.
     let loop_counter = 99;
     do{
-        // Pick two different numbers between 1 and 9.
         first = core_random_integer({
           'max': 9,
           'todo': 'ceil',
@@ -90,7 +80,6 @@ function generate_puzzle(){
             });
         }while(first === second);
 
-        // Iterate through all buttons and switch those two numbers.
         let times = 80;
         do{
             if(puzzle[times] === first){
@@ -102,15 +91,12 @@ function generate_puzzle(){
         }while(times--);
     }while(loop_counter--);
 
-    // Switch columns between different blocks of 3 columns 100 times.
     loop_counter = 99;
     do{
-        // Pick a column number to switch.
         which = core_random_integer({
           'max': 3,
         });
 
-        // Pick two different blocks of 3 columns to switch the selected column number between.
         first = core_random_integer({
           'max': 3,
         });
@@ -120,8 +106,6 @@ function generate_puzzle(){
             });
         }while(first === second);
 
-        // Iterate through each value in the selected column.
-        // Swap them between the two selected blocks of 3 columns.
         let times = 8;
         do{
             const temp = puzzle[9 * times + 3 * first + which];
@@ -130,15 +114,12 @@ function generate_puzzle(){
         }while(times--);
     }while(loop_counter--);
 
-    // Switch columns within a block of 3 columns 100 times.
     loop_counter = 99;
     do{
-        // Pick the block of 3 columns in which to switch two columns.
         which = core_random_integer({
           'max': 3,
         });
 
-        // Pick two different columns to switch.
         first = core_random_integer({
           'max': 3,
         });
@@ -148,7 +129,6 @@ function generate_puzzle(){
             });
         }while(first === second);
 
-        // Iterate through each value and swap the values between the two selected columns.
         let times = 8;
         do{
             const temp = puzzle[9 * times + 3 * which + first];
@@ -157,15 +137,12 @@ function generate_puzzle(){
         }while(times--);
     }while(loop_counter--);
 
-    // Switch random rows within a block of 3 rows 100 times.
     loop_counter = 99;
     do{
-        // Pick one of the 3 blocks of 3 rows.
         which = core_random_integer({
           'max': 3,
         });
 
-        // Pick two different rows.
         first = core_random_integer({
           'max': 3,
         });
@@ -175,7 +152,6 @@ function generate_puzzle(){
             });
         }while(first === second);
 
-        // Iterate through each value and swap the values between the two selected rows.
         let times = 8;
         do{
             const temp = puzzle[which * 27 + first * 9 + times];
@@ -184,7 +160,6 @@ function generate_puzzle(){
         }while(times--);
     }while(loop_counter--);
 
-    // Reset all buttons.
     loop_counter = 80;
     do{
         const element = document.getElementById(loop_counter);
@@ -195,7 +170,6 @@ function generate_puzzle(){
         element.value = ' ';
     }while(loop_counter--);
 
-    // Add solutions to some random buttons.
     loop_counter = core_storage_data['locked'] - 1;
     if(loop_counter >= 0){
         do{
@@ -254,7 +228,6 @@ function select_number(number){
 function update_number_select(id){
     const element = document.getElementById(id);
 
-    // Make sure the number select box doesn't go past the left/right edges.
     let xpos = element.offsetLeft - 100 - globalThis.pageXOffset;
     if(xpos < 0){
         xpos = 0;
@@ -265,7 +238,5 @@ function update_number_select(id){
 
     const number_select = document.getElementById('number-select');
     number_select.style.left = xpos + 'px';
-
-    // There is no worry of the number select box going past the top/bottom edges.
     number_select.style.top = (element.offsetTop  - 50 - globalThis.pageYOffset) + 'px';
 }
