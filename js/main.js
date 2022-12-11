@@ -25,7 +25,6 @@ function repo_init(){
       },
       'info': '<input id=generate type=button value="Generate New Puzzle"><br>'
         + '<input id=hint type=button value="Add 1 Hint"><input id=check type=button value="Check Solution">',
-      'menu': true,
       'storage': {
         'locked': 15,
       },
