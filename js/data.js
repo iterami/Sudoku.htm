@@ -164,7 +164,7 @@ function generate_puzzle(){
     do{
         const element = document.getElementById(loop_counter);
         element.disabled = false;
-        element.style.background = '#333';
+        element.style.backgroundColor = '#333';
         element.style.color = '#aaa';
         element.style.position = 'relative';
         element.value = ' ';
@@ -178,13 +178,13 @@ function generate_puzzle(){
             });
             let element = document.getElementById(first);
             element.disabled = true;
-            element.style.background = '#777';
+            element.style.backgroundColor = '#777';
             element.style.color = '#000';
             element.value = puzzle[first];
 
             element = document.getElementById(80 - first);
             element.disabled = true;
-            element.style.background = '#777';
+            element.style.backgroundColor = '#777';
             element.style.color = '#000';
             element.value = puzzle[80 - first];
         }while(loop_counter--);
@@ -212,7 +212,7 @@ function hint(){
     });
     const element = document.getElementById(valid[random_button]);
     element.disabled = true;
-    element.style.background = '#700';
+    element.style.backgroundColor = '#700';
     element.style.color = '#fff';
     element.value = puzzle[valid[random_button]];
 }
