@@ -25,6 +25,58 @@ function repo_init(){
       },
       'info': '<input id=generate type=button value="Generate New Puzzle"><br>'
         + '<input id=hint type=button value="Add 1 Hint"><input id=check type=button value="Check Solution">',
+      'keybinds': {
+        48: {
+          'todo': function(){
+              select_number(0);
+          },
+        },
+        49: {
+          'todo': function(){
+              select_number(1);
+          },
+        },
+        50: {
+          'todo': function(){
+              select_number(2);
+          },
+        },
+        51: {
+          'todo': function(){
+              select_number(3);
+          },
+        },
+        52: {
+          'todo': function(){
+              select_number(4);
+          },
+        },
+        53: {
+          'todo': function(){
+              select_number(5);
+          },
+        },
+        54: {
+          'todo': function(){
+              select_number(6);
+          },
+        },
+        55: {
+          'todo': function(){
+              select_number(7);
+          },
+        },
+        56: {
+          'todo': function(){
+              select_number(8);
+          },
+        },
+        57: {
+          'todo': function(){
+              select_number(9);
+          },
+        },
+      },
       'storage': {
         'locked': 15,
       },

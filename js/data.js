@@ -218,6 +218,10 @@ function hint(){
 }
 
 function select_number(number){
+    if(selected_button === -1){
+        return;
+    }
+
     document.getElementById(selected_button).value = number > 0
       ? number
       : ' ';
