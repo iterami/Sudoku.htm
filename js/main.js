@@ -1,11 +1,5 @@
 'use strict';
 
-function repo_escape(){
-    if(selected_button !== -1){
-        display_number_select(selected_button);
-    }
-}
-
 function repo_init(){
     core_repo_init({
       'events': {
