@@ -20,6 +20,16 @@ function repo_init(){
       'info': '<input id=generate type=button value="Generate New Puzzle"><br>'
         + '<input id=hint type=button value="Add 1 Hint"><input id=check type=button value="Check Solution">',
       'keybinds': {
+        8: {
+          'todo': function(){
+              select_number(-1);
+          },
+        },
+        46: {
+          'todo': function(){
+              select_number(-1);
+          },
+        },
         48: {
           'todo': function(){
               select_number(0);
