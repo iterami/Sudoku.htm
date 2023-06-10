@@ -7,10 +7,14 @@ function repo_init(){
           'onclick': check,
         },
         'generate': {
-          'onclick': generate_puzzle,
+          'onclick': function(){
+              generate_puzzle(true);
+          },
         },
         'hint': {
-          'onclick': hint,
+          'onclick': function(){
+              hint(true);
+          },
         },
       },
       'globals': {

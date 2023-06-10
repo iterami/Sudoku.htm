@@ -46,7 +46,12 @@ function display_number_select(id){
     }
 }
 
-function generate_puzzle(){
+function generate_puzzle(confirm){
+    if(confirm === true
+      && !globalThis.confirm('Generate new puzzle?')){
+        return;
+    }
+
     core_storage_save();
 
     let first = 0;
@@ -191,7 +196,12 @@ function generate_puzzle(){
     }
 }
 
-function hint(){
+function hint(confirm){
+    if(confirm === true
+      && !globalThis.confirm('Add 1 hint?')){
+        return;
+    }
+
     const valid = [];
 
     var loop_counter = 80;
