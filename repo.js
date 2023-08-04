@@ -28,21 +28,26 @@ function check(){
 }
 
 function display_number_select(id){
-    let loop_counter = 80;
-    do{
-        document.getElementById(loop_counter).style.zIndex = 0;
-    }while(loop_counter--);
-
     if(selected_button === -1
       || selected_button !== id){
         selected_button = id;
-        document.getElementById(selected_button).style.zIndex = 2;
-        update_number_select(id);
+        const element = document.getElementById(id);
+
+        let xpos = element.offsetLeft - 100 - globalThis.pageXOffset;
+        if(xpos < 0){
+            xpos = 0;
+
+        }else if(xpos > globalThis.innerWidth - 150){
+            xpos = globalThis.innerWidth - 150;
+        }
+
+        const number_select = document.getElementById('number-select');
+        number_select.style.left = xpos + 'px';
+        number_select.style.top = (element.offsetTop  - 50 - globalThis.pageYOffset) + 'px';
         document.getElementById('number-select').style.display = 'block';
 
     }else{
-        selected_button = -1;
-        document.getElementById('number-select').style.display = 'none';
+        hide_number_select();
     }
 }
 
@@ -196,6 +201,11 @@ function generate_puzzle(confirm){
     }
 }
 
+function hide_number_select(){
+    selected_button = -1;
+    document.getElementById('number-select').style.display = 'none';
+}
+
 function hint(confirm){
     if(confirm === true
       && !globalThis.confirm('Add 1 hint?')){
@@ -225,6 +235,10 @@ function hint(confirm){
     element.style.backgroundColor = '#700';
     element.style.color = '#fff';
     element.value = puzzle[valid[random_button]];
+}
+
+function repo_escape(){
+    hide_number_select();
 }
 
 function repo_init(){
@@ -346,7 +360,6 @@ function repo_init(){
 
     element = document.getElementById('number-select');
     element.style.position = 'fixed';
-    element.style.zIndex = 1;
 
     generate_puzzle();
 
@@ -357,13 +370,6 @@ function repo_init(){
             select_number(id.substring(id.indexOf('-') + 1));
         };
     }while(loop_counter--);
-
-    globalThis.onresize
-      = globalThis.onscroll = function(e){
-        if(selected_button !== -1){
-            update_number_select(selected_button);
-        }
-    };
 }
 
 function select_number(number){
@@ -374,22 +380,5 @@ function select_number(number){
     document.getElementById(selected_button).value = number > 0
       ? number
       : ' ';
-    selected_button = -1;
-    document.getElementById('number-select').style.display = 'none';
-}
-
-function update_number_select(id){
-    const element = document.getElementById(id);
-
-    let xpos = element.offsetLeft - 100 - globalThis.pageXOffset;
-    if(xpos < 0){
-        xpos = 0;
-
-    }else if(xpos > globalThis.innerWidth - 150){
-        xpos = globalThis.innerWidth - 150;
-    }
-
-    const number_select = document.getElementById('number-select');
-    number_select.style.left = xpos + 'px';
-    number_select.style.top = (element.offsetTop  - 50 - globalThis.pageYOffset) + 'px';
+    hide_number_select();
 }
