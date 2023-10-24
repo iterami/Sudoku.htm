@@ -263,62 +263,57 @@ function repo_init(){
         'selected_button': -1,
       },
       'keybinds': {
-        8: {
+        'Backspace': {
           'todo': function(){
               select_number(-1);
           },
         },
-        46: {
-          'todo': function(){
-              select_number(-1);
-          },
-        },
-        48: {
+        'Digit0': {
           'todo': function(){
               select_number(0);
           },
         },
-        49: {
+        'Digit1': {
           'todo': function(){
               select_number(1);
           },
         },
-        50: {
+        'Digit2': {
           'todo': function(){
               select_number(2);
           },
         },
-        51: {
+        'Digit3': {
           'todo': function(){
               select_number(3);
           },
         },
-        52: {
+        'Digit4': {
           'todo': function(){
               select_number(4);
           },
         },
-        53: {
+        'Digit5': {
           'todo': function(){
               select_number(5);
           },
         },
-        54: {
+        'Digit6': {
           'todo': function(){
               select_number(6);
           },
         },
-        55: {
+        'Digit7': {
           'todo': function(){
               select_number(7);
           },
         },
-        56: {
+        'Digit8': {
           'todo': function(){
               select_number(8);
           },
         },
-        57: {
+        'Digit9': {
           'todo': function(){
               select_number(9);
           },
