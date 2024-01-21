@@ -5,7 +5,7 @@ function check(){
     let win = true;
     let loop_counter = 80;
     do{
-        const button_value = document.getElementById(loop_counter).value;
+        const button_value = document.getElementById(loop_counter).textContent;
 
         if(Number(button_value) !== puzzle[loop_counter]){
             if(button_value === ' '){
@@ -177,7 +177,7 @@ function generate_puzzle(confirm){
         element.style.backgroundColor = '#333';
         element.style.color = '#aaa';
         element.style.position = 'relative';
-        element.value = ' ';
+        element.textContent = ' ';
     }while(loop_counter--);
 
     loop_counter = core_storage_data['locked'] - 1;
@@ -190,13 +190,13 @@ function generate_puzzle(confirm){
             element.disabled = true;
             element.style.backgroundColor = '#777';
             element.style.color = '#000';
-            element.value = puzzle[first];
+            element.textContent = puzzle[first];
 
             element = document.getElementById(80 - first);
             element.disabled = true;
             element.style.backgroundColor = '#777';
             element.style.color = '#000';
-            element.value = puzzle[80 - first];
+            element.textContent = puzzle[80 - first];
         }while(loop_counter--);
     }
 }
@@ -216,7 +216,7 @@ function hint(confirm){
 
     var loop_counter = 80;
     do{
-        if(document.getElementById(loop_counter).value === ' '){
+        if(document.getElementById(loop_counter).textContent === ' '){
             valid.push(loop_counter);
         }
     }while(loop_counter--);
@@ -234,7 +234,7 @@ function hint(confirm){
     element.disabled = true;
     element.style.backgroundColor = '#700';
     element.style.color = '#fff';
-    element.value = puzzle[valid[random_button]];
+    element.textContent = puzzle[valid[random_button]];
 }
 
 function repo_escape(){
@@ -330,11 +330,11 @@ function repo_init(){
     let output = '';
     do{
         output +=
-          '<input class=gridbuttonclickable id='
+          '<button class=gridbuttonclickable id='
           + loop_counter
           + ' onclick=display_number_select('
           + loop_counter
-          + ') type=button>';
+          + ') type=button></button>';
         if(loop_counter % 9 === 0
           && loop_counter !== 0){
             output += '<br>';
@@ -372,7 +372,7 @@ function select_number(number){
         return;
     }
 
-    document.getElementById(selected_button).value = number > 0
+    document.getElementById(selected_button).textContent = number > 0
       ? number
       : ' ';
     hide_number_select();
