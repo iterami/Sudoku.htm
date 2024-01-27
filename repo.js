@@ -342,7 +342,6 @@ function repo_init(){
     }while(loop_counter--);
     let element = document.getElementById('game-div');
     element.innerHTML = output;
-    element.style.marginTop = '50px';
     element.style.minWidth = '600px';
 
     loop_counter = 8;
@@ -365,6 +364,12 @@ function repo_init(){
             select_number(id.substring(id.indexOf('-') + 1));
         };
     }while(loop_counter--);
+
+    document.body.onclick = function(event){
+        if(Number.isNaN(Number(event.target.id))){
+            hide_number_select();
+        }
+    };
 }
 
 function select_number(number){
