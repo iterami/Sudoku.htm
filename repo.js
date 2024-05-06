@@ -41,9 +41,9 @@ function display_number_select(id){
             xpos = globalThis.innerWidth - 150;
         }
 
-        const number_select = document.getElementById('number-select');
-        number_select.style.left = xpos + 'px';
-        number_select.style.top = (element.offsetTop  - 50 - globalThis.pageYOffset) + 'px';
+        const style = document.getElementById('number-select').style;
+        style.left = xpos + 'px';
+        style.top = (element.offsetTop  - 50 - globalThis.pageYOffset) + 'px';
         document.getElementById('number-select').style.display = 'block';
 
     }else{
