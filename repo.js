@@ -5,7 +5,7 @@ function check(){
     let win = true;
     let loop_counter = 80;
     do{
-        const button_value = document.getElementById(loop_counter).textContent;
+        const button_value = core_elements[loop_counter].textContent;
 
         if(Number(button_value) !== puzzle[loop_counter]){
             if(button_value === ' '){
@@ -31,7 +31,7 @@ function display_number_select(id){
     if(selected_button === -1
       || selected_button !== id){
         selected_button = id;
-        const element = document.getElementById(id);
+        const element = core_elements[id];
 
         let xpos = element.offsetLeft - 100 - globalThis.pageXOffset;
         if(xpos < 0){
@@ -41,10 +41,10 @@ function display_number_select(id){
             xpos = globalThis.innerWidth - 150;
         }
 
-        const style = document.getElementById('number-select').style;
+        const style = core_elements['number-select'].style;
+        style.display = 'block';
         style.left = xpos + 'px';
-        style.top = (element.offsetTop  - 50 - globalThis.pageYOffset) + 'px';
-        document.getElementById('number-select').style.display = 'block';
+        style.top = (element.offsetTop - 50 - globalThis.pageYOffset) + 'px';
 
     }else{
         hide_number_select();
@@ -172,7 +172,7 @@ function generate_puzzle(confirm){
 
     loop_counter = 80;
     do{
-        const element = document.getElementById(loop_counter);
+        const element = core_elements[loop_counter];
         element.disabled = false;
         element.style.backgroundColor = '#333';
         element.style.color = '#aaa';
@@ -186,13 +186,13 @@ function generate_puzzle(confirm){
             first = core_random_integer({
               'max': 81,
             });
-            let element = document.getElementById(first);
+            let element = core_elements[first];
             element.disabled = true;
             element.style.backgroundColor = '#777';
             element.style.color = '#000';
             element.textContent = puzzle[first];
 
-            element = document.getElementById(80 - first);
+            element = core_elements[80 - first];
             element.disabled = true;
             element.style.backgroundColor = '#777';
             element.style.color = '#000';
@@ -203,7 +203,7 @@ function generate_puzzle(confirm){
 
 function hide_number_select(){
     selected_button = -1;
-    document.getElementById('number-select').style.display = 'none';
+    core_elements['number-select'].style.display = 'none';
 }
 
 function hint(confirm){
@@ -216,7 +216,7 @@ function hint(confirm){
 
     var loop_counter = 80;
     do{
-        if(document.getElementById(loop_counter).textContent === ' '){
+        if(core_elements[loop_counter].textContent === ' '){
             valid.push(loop_counter);
         }
     }while(loop_counter--);
@@ -225,12 +225,12 @@ function hint(confirm){
         return;
     }
 
-    document.getElementById('number-select').style.display = 'none';
+    core_elements['number-select'].style.display = 'none';
 
     const random_button = core_random_integer({
       'max': valid.length,
     });
-    const element = document.getElementById(valid[random_button]);
+    const element = core_elements[valid[random_button]];
     element.disabled = true;
     element.style.backgroundColor = '#700';
     element.style.color = '#fff';
@@ -324,6 +324,9 @@ function repo_init(){
       },
       'storage-menu': '<table><tr><td><input class=mini id=locked min=0 step=any type=number><td>*2 &gt; Locked</table>',
       'title': 'Sudoku.htm',
+      'ui-elements': [
+        'number-select',
+      ],
     });
 
     let loop_counter = 80;
@@ -344,22 +347,27 @@ function repo_init(){
     element.innerHTML = output;
     element.style.minWidth = '600px';
 
-    loop_counter = 8;
+    loop_counter = 80;
     do{
-        document.getElementById(3 + 9 * loop_counter).style.marginRight = '5px';
-        document.getElementById(27 + loop_counter).style.marginBottom = '5px';
-        document.getElementById(54 + loop_counter).style.marginBottom = '5px';
-        document.getElementById(6 + 9 * loop_counter).style.marginRight = '5px';
+        core_elements[loop_counter] = document.getElementById(loop_counter);
     }while(loop_counter--);
 
-    element = document.getElementById('number-select');
-    element.style.position = 'fixed';
+    loop_counter = 8;
+    do{
+        core_elements[3 + 9 * loop_counter].style.marginRight = '5px';
+        core_elements[27 + loop_counter].style.marginBottom = '5px';
+        core_elements[54 + loop_counter].style.marginBottom = '5px';
+        core_elements[6 + 9 * loop_counter].style.marginRight = '5px';
+    }while(loop_counter--);
+
+    core_elements['number-select'].style.position = 'fixed';
 
     generate_puzzle();
 
     loop_counter = 9;
     do{
-        document.getElementById('select-' + loop_counter).onclick = function(){
+        core_elements['select-' + loop_counter] = document.getElementById('select-' + loop_counter);
+        core_elements['select-' + loop_counter].onclick = function(){
             const id = this.id;
             select_number(id.substring(id.indexOf('-') + 1));
         };
@@ -378,7 +386,7 @@ function select_number(number){
         return;
     }
 
-    document.getElementById(selected_button).textContent = number > 0
+    core_elements[selected_button].textContent = number > 0
       ? number
       : ' ';
     hide_number_select();
