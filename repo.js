@@ -375,7 +375,7 @@ function repo_init(){
 
     document.documentElement.onclick = function(event){
         if(!event.target.id
-          || Number.isNaN(Number(event.target.id))){
+          || globalThis.isNaN(event.target.id)){
             hide_number_select();
         }
     };
