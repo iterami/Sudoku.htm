@@ -118,9 +118,9 @@ function generate_puzzle(confirm){
 
         let times = 8;
         do{
-            const temp = puzzle[9 * times + 3 * first + which];
-            puzzle[9 * times + 3 * first + which] = puzzle[9 * times + 3 * second + which];
-            puzzle[9 * times + 3 * second + which] = temp;
+            const first_value = 9 * times + 3 * first + which;
+            const second_value = 9 * times + 3 * second + which;
+            [puzzle[first_value], puzzle[second_value]] = [puzzle[second_value], puzzle[first_value]];
         }while(times--);
     }while(loop_counter--);
 
@@ -141,9 +141,9 @@ function generate_puzzle(confirm){
 
         let times = 8;
         do{
-            const temp = puzzle[9 * times + 3 * which + first];
-            puzzle[9 * times + 3 * which + first] = puzzle[9 * times + 3 * which + second];
-            puzzle[9 * times + 3 * which + second] = temp;
+            const first_value = 9 * times + 3 * which + first;
+            const second_value = 9 * times + 3 * which + second;
+            [puzzle[first_value], puzzle[second_value]] = [puzzle[second_value], puzzle[first_value]];
         }while(times--);
     }while(loop_counter--);
 
@@ -164,9 +164,9 @@ function generate_puzzle(confirm){
 
         let times = 8;
         do{
-            const temp = puzzle[which * 27 + first * 9 + times];
-            puzzle[which * 27 + first * 9 + times] = puzzle[which * 27 + second * 9 + times];
-            puzzle[which * 27 + second * 9 + times] = temp;
+            const first_value = which * 27 + first * 9 + times;
+            const second_value = which * 27 + second * 9 + times;
+            [puzzle[first_value], puzzle[second_value]] = [puzzle[second_value], puzzle[first_value]];
         }while(times--);
     }while(loop_counter--);
 
