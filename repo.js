@@ -180,7 +180,7 @@ function generate_puzzle(confirm){
         element.textContent = ' ';
     }while(loop_counter--);
 
-    loop_counter = core_storage_data['locked'] - 1;
+    loop_counter = Math.floor(core_storage_data['locked']) - 1;
     if(loop_counter >= 0){
         do{
             first = core_random_integer({
@@ -322,7 +322,7 @@ function repo_init(){
       'storage': {
         'locked': 15,
       },
-      'storage-menu': '<table><tr><td><input class=mini id=locked min=0 step=any type=number><td>*2 &gt; Locked</table>',
+      'storage-menu': '<table><tr><td><input class=mini id=locked min=0 step=1 type=number><td>*2 &gt; Locked</table>',
       'title': 'Sudoku.htm',
       'ui-elements': [
         'number-select',
