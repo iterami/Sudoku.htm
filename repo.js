@@ -174,7 +174,7 @@ function generate_puzzle(confirm){
     do{
         const element = core_elements[loop_counter];
         element.disabled = false;
-        element.style.backgroundColor = '#333';
+        element.style.backgroundColor = '';
         element.style.color = '#aaa';
         element.style.position = 'relative';
         element.textContent = ' ';
@@ -338,8 +338,7 @@ function repo_init(){
           + ' onclick=display_number_select('
           + loop_counter
           + ') type=button></button>';
-        if(loop_counter % 9 === 0
-          && loop_counter !== 0){
+        if(loop_counter % 9 === 0){
             output += '<br>';
         }
     }while(loop_counter--);
