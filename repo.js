@@ -342,7 +342,7 @@ function repo_init(){
             output += '<br>';
         }
     }while(loop_counter--);
-    let element = document.getElementById('game-div');
+    const element = document.getElementById('game-div');
     element.innerHTML = output;
     element.style.minWidth = '600px';
 
