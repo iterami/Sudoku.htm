@@ -214,7 +214,7 @@ function hint(confirm){
 
     const valid = [];
 
-    var loop_counter = 80;
+    let loop_counter = 80;
     do{
         if(core_elements[loop_counter].textContent === ' '){
             valid.push(loop_counter);
