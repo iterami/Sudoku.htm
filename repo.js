@@ -31,20 +31,17 @@ function display_number_select(id){
     if(selected_button === -1
       || selected_button !== id){
         selected_button = id;
-        const element = core_elements[id];
-
-        let xpos = element.offsetLeft - 100 - globalThis.pageXOffset;
-        if(xpos < 0){
-            xpos = 0;
-
-        }else if(xpos > globalThis.innerWidth - 150){
-            xpos = globalThis.innerWidth - 150;
-        }
 
         const style = core_elements['number-select'].style;
         style.display = 'block';
-        style.left = xpos + 'px';
-        style.top = (element.offsetTop - 50 - globalThis.pageYOffset) + 'px';
+        style.left = Math.max(
+          0,
+          Math.min(
+            globalThis.innerWidth - 250,
+            core_elements[id].offsetLeft - 100 - globalThis.pageXOffset
+          )
+        ) + 'px';
+        style.top = (core_elements[id].offsetTop - 50 - globalThis.pageYOffset) + 'px';
 
     }else{
         hide_number_select();
@@ -344,7 +341,7 @@ function repo_init(){
     }while(loop_counter--);
     const element = document.getElementById('game-div');
     element.innerHTML = output;
-    element.style.minWidth = '600px';
+    element.style.minWidth = '500px';
 
     loop_counter = 80;
     do{
