@@ -240,6 +240,11 @@ function repo_escape(){
 
 function repo_init(){
     core_repo_init({
+      'beforeunload': {
+        'todo': function(event){
+            event.preventDefault();
+        },
+      },
       'events': {
         'check': {
           'onclick': check,
