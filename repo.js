@@ -76,15 +76,9 @@ function generate_puzzle(confirm){
 
     let loop_counter = 99;
     do{
-        first = core_random_integer({
-          'max': 9,
-          'todo': 'ceil',
-        });
+        first = core_random_integer(9) + 1;
         do{
-            second = core_random_integer({
-              'max': 9,
-              'todo': 'ceil',
-            });
+            second = core_random_integer(9) + 1;
         }while(first === second);
 
         let times = 80;
@@ -100,17 +94,10 @@ function generate_puzzle(confirm){
 
     loop_counter = 99;
     do{
-        which = core_random_integer({
-          'max': 3,
-        });
-
-        first = core_random_integer({
-          'max': 3,
-        });
+        which = core_random_integer(3);
+        first = core_random_integer(3);
         do{
-            second = core_random_integer({
-              'max': 3,
-            });
+            second = core_random_integer(3);
         }while(first === second);
 
         let times = 8;
@@ -123,17 +110,10 @@ function generate_puzzle(confirm){
 
     loop_counter = 99;
     do{
-        which = core_random_integer({
-          'max': 3,
-        });
-
-        first = core_random_integer({
-          'max': 3,
-        });
+        which = core_random_integer(3);
+        first = core_random_integer(3);
         do{
-            second = core_random_integer({
-              'max': 3,
-            });
+            second = core_random_integer(3);
         }while(first === second);
 
         let times = 8;
@@ -146,17 +126,10 @@ function generate_puzzle(confirm){
 
     loop_counter = 99;
     do{
-        which = core_random_integer({
-          'max': 3,
-        });
-
-        first = core_random_integer({
-          'max': 3,
-        });
+        which = core_random_integer(3);
+        first = core_random_integer(3);
         do{
-            second = core_random_integer({
-              'max': 3,
-            });
+            second = core_random_integer(3);
         }while(first === second);
 
         let times = 8;
@@ -180,9 +153,7 @@ function generate_puzzle(confirm){
     loop_counter = Math.floor(core_storage_data['locked']) - 1;
     if(loop_counter >= 0){
         do{
-            first = core_random_integer({
-              'max': 81,
-            });
+            first = core_random_integer(81);
             let element = core_elements[first];
             element.disabled = true;
             element.style.backgroundColor = '#777';
@@ -224,9 +195,7 @@ function hint(confirm){
 
     core_elements['number-select'].style.display = 'none';
 
-    const random_button = core_random_integer({
-      'max': valid.length,
-    });
+    const random_button = core_random_integer(valid.length);
     const element = core_elements[valid[random_button]];
     element.disabled = true;
     element.style.backgroundColor = '#700';
