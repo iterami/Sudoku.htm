@@ -313,7 +313,7 @@ function repo_init(){
             output += '<br>';
         }
     }while(loop_counter--);
-    const element = document.getElementById('game-div');
+    const element = document.getElementById('game');
     element.innerHTML = output;
     element.style.minWidth = '500px';
 
