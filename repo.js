@@ -293,7 +293,7 @@ function repo_init(){
       'storage': {
         'locked': 15,
       },
-      'storage-menu': '<table><tr><td><input class=mini id=locked min=0 step=1 type=number><td>*2 &gt; Locked</table>',
+      'storage_menu': '<table><tr><td><input class=mini id=locked min=0 step=1 type=number><td>*2 &gt; Locked</table>',
       'title': 'Sudoku.htm',
       'ui_elements': [
         'numbers',
