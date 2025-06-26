@@ -336,10 +336,10 @@ function repo_init(){
 
     loop_counter = 9;
     do{
-        core_elements['select-' + loop_counter] = document.getElementById('select-' + loop_counter);
-        core_elements['select-' + loop_counter].onclick = function(){
+        core_elements['select_' + loop_counter] = document.getElementById('select_' + loop_counter);
+        core_elements['select_' + loop_counter].onclick = function(){
             const id = this.id;
-            select_number(id.substring(id.indexOf('-') + 1));
+            select_number(id.substring(id.indexOf('_') + 1));
         };
     }while(loop_counter--);
 
