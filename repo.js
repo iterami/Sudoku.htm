@@ -149,6 +149,10 @@ function generate_puzzle(confirm){
         element.style.height = core_storage_data.size;
         element.style.width = core_storage_data.size;
         element.textContent = '';
+
+        const font = Math.ceil(element.offsetWidth / 1.5) + 'px';
+        element.style.fontSize = font;
+        element.style.lineHeight = font;
     }while(loop_counter--);
 
     loop_counter = Math.floor(core_storage_data.locked) - 1;
