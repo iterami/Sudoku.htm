@@ -8,7 +8,7 @@ function check(){
         const button_value = core_elements[loop_counter].textContent;
 
         if(Number(button_value) !== puzzle[loop_counter]){
-            if(button_value === ' '){
+            if(button_value === ''){
                 complete = false;
             }
             win = false;
@@ -146,8 +146,9 @@ function generate_puzzle(confirm){
         element.disabled = false;
         element.style.backgroundColor = '';
         element.style.color = '#aaa';
-        element.style.position = 'relative';
-        element.textContent = ' ';
+        element.style.height = core_storage_data.size;
+        element.style.width = core_storage_data.size;
+        element.textContent = '';
     }while(loop_counter--);
 
     loop_counter = Math.floor(core_storage_data.locked) - 1;
@@ -184,7 +185,7 @@ function hint(confirm){
 
     let loop_counter = 80;
     do{
-        if(core_elements[loop_counter].textContent === ' '){
+        if(core_elements[loop_counter].textContent === ''){
             valid.push(loop_counter);
         }
     }while(loop_counter--);
@@ -292,8 +293,10 @@ function repo_init(){
       },
       'storage': {
         'locked': 15,
+        'size': '50px',
       },
-      'storage_menu': '<table><tr><td><input class=mini id=locked min=0 step=1 type=number><td>*2 &gt; Locked</table>',
+      'storage_menu': '<table><tr><td><input class=mini id=locked min=0 step=1 type=number><td>*2 &gt; Locked'
+        + '<tr><td><input class=mini id=size type=text><td>Button Size</table>',
       'title': 'Sudoku.htm',
       'ui_elements': [
         'numbers',
@@ -358,6 +361,6 @@ function select_number(number){
 
     core_elements[selected_button].textContent = number > 0
       ? number
-      : ' ';
+      : '';
     hide_number_select();
 }
