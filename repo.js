@@ -240,57 +240,57 @@ function repo_init(){
       },
       'keybinds': {
         'Backspace': {
-          'todo': function(){
+          'down': function(){
               select_number(-1);
           },
         },
         'Digit0': {
-          'todo': function(){
+          'down': function(){
               select_number(0);
           },
         },
         'Digit1': {
-          'todo': function(){
+          'down': function(){
               select_number(1);
           },
         },
         'Digit2': {
-          'todo': function(){
+          'down': function(){
               select_number(2);
           },
         },
         'Digit3': {
-          'todo': function(){
+          'down': function(){
               select_number(3);
           },
         },
         'Digit4': {
-          'todo': function(){
+          'down': function(){
               select_number(4);
           },
         },
         'Digit5': {
-          'todo': function(){
+          'down': function(){
               select_number(5);
           },
         },
         'Digit6': {
-          'todo': function(){
+          'down': function(){
               select_number(6);
           },
         },
         'Digit7': {
-          'todo': function(){
+          'down': function(){
               select_number(7);
           },
         },
         'Digit8': {
-          'todo': function(){
+          'down': function(){
               select_number(8);
           },
         },
         'Digit9': {
-          'todo': function(){
+          'down': function(){
               select_number(9);
           },
         },
