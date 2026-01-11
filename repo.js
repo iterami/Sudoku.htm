@@ -54,8 +54,6 @@ function generate_puzzle(confirm){
         return;
     }
 
-    core_storage_save();
-
     let first = 0;
     let second = 0;
     let which = 0;
