@@ -153,6 +153,8 @@ function generate_puzzle(confirm){
         element.style.lineHeight = font;
     }while(loop_counter--);
 
+    core_elements.game.style.minWidth = (core_elements[0].offsetWidth * 9 + 40) + 'px';
+
     loop_counter = Math.floor(core_storage_data.locked) - 1;
     if(loop_counter >= 0){
         do{
@@ -301,6 +303,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=size type=text><td>Button Size</table>',
       'title': 'Sudoku.htm',
       'ui_elements': [
+        'game',
         'numbers',
       ],
     });
@@ -308,8 +311,7 @@ function repo_init(){
     let loop_counter = 80;
     let output = '';
     do{
-        output +=
-          '<button class=gridbuttonclickable id='
+        output += '<button class=gridbuttonclickable id='
           + loop_counter
           + ' onclick=display_number_select('
           + loop_counter
@@ -318,9 +320,7 @@ function repo_init(){
             output += '<br>';
         }
     }while(loop_counter--);
-    const element = document.getElementById('game');
-    element.innerHTML = output;
-    element.style.minWidth = '500px';
+    core_elements.game.innerHTML = output;
 
     loop_counter = 80;
     do{
