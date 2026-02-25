@@ -3,18 +3,17 @@
 function check(){
     let complete = true;
     let win = true;
-    let loop_counter = 80;
-    do{
-        const button_value = core_elements[loop_counter].textContent;
+    for(let i = 0; i < 81; i++){
+        const button_value = core_elements[i].textContent;
 
-        if(Number(button_value) !== puzzle[loop_counter]){
+        if(Number(button_value) !== puzzle[i]){
             if(button_value === ''){
                 complete = false;
             }
             win = false;
             break;
         }
-    }while(loop_counter--);
+    }
 
     let message = 'Correct!';
     if(!complete){
@@ -54,10 +53,6 @@ function generate_puzzle(confirm){
         return;
     }
 
-    let first = 0;
-    let second = 0;
-    let which = 0;
-
     puzzle = [
       8,7,6, 5,4,3, 2,1,9,
       5,4,3, 2,1,9, 8,7,6,
@@ -72,75 +67,63 @@ function generate_puzzle(confirm){
       9,8,7, 6,5,4, 3,2,1,
     ];
 
-    let loop_counter = 99;
-    do{
-        first = core_random_integer(9) + 1;
-        do{
-            second = core_random_integer(9) + 1;
-        }while(first === second);
+    for(let i = 0; i < 100; i++){
+        const choices = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const first = core_random_splice(choices);
+        const second = core_random_splice(choices);
 
-        let times = 80;
-        do{
-            if(puzzle[times] === first){
-                puzzle[times] = second;
+        for(let j = 0; j < 9; j++){
+            if(puzzle[j] === first){
+                puzzle[j] = second;
 
-            }else if(puzzle[times] === second){
-                puzzle[times] = first;
+            }else if(puzzle[j] === second){
+                puzzle[j] = first;
             }
-        }while(times--);
-    }while(loop_counter--);
+        }
+    }
 
-    loop_counter = 99;
-    do{
-        which = core_random_integer(3);
-        first = core_random_integer(3);
-        do{
-            second = core_random_integer(3);
-        }while(first === second);
+    for(let i = 0; i < 100; i++){
+        const choices = [0, 1, 2];
+        const first = core_random_splice(choices);
+        const second = core_random_splice(choices);
+        const which = core_random_integer(3);
 
-        let times = 8;
-        do{
-            const first_value = 9 * times + 3 * first + which;
-            const second_value = 9 * times + 3 * second + which;
+        for(let j = 0; j < 9; j++){
+            const first_value = 9 * j + 3 * first + which;
+            const second_value = 9 * j + 3 * second + which;
             [puzzle[first_value], puzzle[second_value]] = [puzzle[second_value], puzzle[first_value]];
-        }while(times--);
-    }while(loop_counter--);
+        }
+    }
 
-    loop_counter = 99;
-    do{
-        which = core_random_integer(3);
-        first = core_random_integer(3);
-        do{
-            second = core_random_integer(3);
-        }while(first === second);
+    for(let i = 0; i < 100; i++){
+        const choices = [0, 1, 2];
+        const first = core_random_splice(choices);
+        const second = core_random_splice(choices);
+        const which = core_random_integer(3);
 
-        let times = 8;
-        do{
-            const first_value = 9 * times + 3 * which + first;
-            const second_value = 9 * times + 3 * which + second;
+        for(let j = 0; j < 9; j++){
+            const first_value = 9 * j + 3 * which + first;
+            const second_value = 9 * j + 3 * which + second;
             [puzzle[first_value], puzzle[second_value]] = [puzzle[second_value], puzzle[first_value]];
-        }while(times--);
-    }while(loop_counter--);
+        }
+    }
 
-    loop_counter = 99;
-    do{
-        which = core_random_integer(3);
-        first = core_random_integer(3);
-        do{
-            second = core_random_integer(3);
-        }while(first === second);
+    for(let i = 0; i < 100; i++){
+        const choices = [0, 1, 2];
+        const first = core_random_splice(choices);
+        const second = core_random_splice(choices);
+        const which = core_random_integer(3);
 
-        let times = 8;
-        do{
-            const first_value = which * 27 + first * 9 + times;
-            const second_value = which * 27 + second * 9 + times;
+        for(let j = 0; j < 9; j++){
+            const first_value = which * 27 + first * 9 + j;
+            const second_value = which * 27 + second * 9 + j;
             [puzzle[first_value], puzzle[second_value]] = [puzzle[second_value], puzzle[first_value]];
-        }while(times--);
-    }while(loop_counter--);
+        }
+    }
 
-    loop_counter = 80;
-    do{
-        const element = core_elements[loop_counter];
+    core_elements.game.style.minWidth = (core_elements[0].offsetWidth * 9 + 40) + 'px';
+    for(let i = 0; i < 81; i++){
+        const element = core_elements[i];
         element.disabled = false;
         element.style.backgroundColor = '';
         element.style.color = '#aaa';
@@ -151,26 +134,20 @@ function generate_puzzle(confirm){
         const font = Math.ceil(element.offsetWidth / 1.5) + 'px';
         element.style.fontSize = font;
         element.style.lineHeight = font;
-    }while(loop_counter--);
+    }
+    for(let i = 0; i < core_storage_data.locked; i++){
+        const id = core_random_integer(81);
+        let element = core_elements[id];
+        element.disabled = true;
+        element.style.backgroundColor = '#777';
+        element.style.color = '#000';
+        element.textContent = puzzle[id];
 
-    core_elements.game.style.minWidth = (core_elements[0].offsetWidth * 9 + 40) + 'px';
-
-    loop_counter = Math.floor(core_storage_data.locked) - 1;
-    if(loop_counter >= 0){
-        do{
-            first = core_random_integer(81);
-            let element = core_elements[first];
-            element.disabled = true;
-            element.style.backgroundColor = '#777';
-            element.style.color = '#000';
-            element.textContent = puzzle[first];
-
-            element = core_elements[80 - first];
-            element.disabled = true;
-            element.style.backgroundColor = '#777';
-            element.style.color = '#000';
-            element.textContent = puzzle[80 - first];
-        }while(loop_counter--);
+        element = core_elements[80 - id];
+        element.disabled = true;
+        element.style.backgroundColor = '#777';
+        element.style.color = '#000';
+        element.textContent = puzzle[80 - id];
     }
 }
 
@@ -187,12 +164,11 @@ function hint(confirm){
 
     const valid = [];
 
-    let loop_counter = 80;
-    do{
-        if(core_elements[loop_counter].textContent === ''){
-            valid.push(loop_counter);
+    for(let i = 0; i < 81; i++){
+        if(core_elements[i].textContent === ''){
+            valid.push(i);
         }
-    }while(loop_counter--);
+    }
 
     if(valid.length === 0){
         return;
@@ -308,46 +284,40 @@ function repo_init(){
       ],
     });
 
-    let loop_counter = 80;
     let output = '';
-    do{
+    for(let i = 0; i < 81; i++){
         output += '<button class=gridbuttonclickable id='
-          + loop_counter
+          + i
           + ' onclick=display_number_select('
-          + loop_counter
+          + i
           + ') type=button></button>';
-        if(loop_counter % 9 === 0){
+
+        if((i + 1) % 9 === 0){
             output += '<br>';
         }
-    }while(loop_counter--);
+    }
     core_elements.game.innerHTML = output;
 
-    loop_counter = 80;
-    do{
-        core_elements[loop_counter] = document.getElementById(loop_counter);
-    }while(loop_counter--);
-
-    loop_counter = 8;
-    do{
-        core_elements[3 + 9 * loop_counter].style.marginRight = '5px';
-        core_elements[27 + loop_counter].style.marginBottom = '5px';
-        core_elements[54 + loop_counter].style.marginBottom = '5px';
-        core_elements[6 + 9 * loop_counter].style.marginRight = '5px';
-    }while(loop_counter--);
-
-    core_elements.numbers.style.position = 'fixed';
+    for(let i = 0; i < 81; i++){
+        core_elements[i] = document.getElementById(i);
+    }
+    for(let i = 0; i < 9; i++){
+        core_elements[3 + 9 * i].style.marginRight = '5px';
+        core_elements[27 + i].style.marginBottom = '5px';
+        core_elements[54 + i].style.marginBottom = '5px';
+        core_elements[6 + 9 * i].style.marginRight = '5px';
+    }
 
     generate_puzzle();
 
-    loop_counter = 9;
-    do{
-        core_elements['select_' + loop_counter] = document.getElementById('select_' + loop_counter);
-        core_elements['select_' + loop_counter].onclick = function(){
+    core_elements.numbers.style.position = 'fixed';
+    for(let i = 0; i < 10; i++){
+        core_elements['select_' + i] = document.getElementById('select_' + i);
+        core_elements['select_' + i].onclick = function(){
             const id = this.id;
             select_number(id.substring(id.indexOf('_') + 1));
         };
-    }while(loop_counter--);
-
+    }
     document.documentElement.onclick = function(event){
         if(!event.target.id
           || globalThis.isNaN(event.target.id)){
