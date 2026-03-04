@@ -302,10 +302,10 @@ function repo_init(){
         core_elements[i] = document.getElementById(i);
     }
     for(let i = 0; i < 9; i++){
-        core_elements[3 + 9 * i].style.marginRight = '5px';
-        core_elements[27 + i].style.marginBottom = '5px';
-        core_elements[54 + i].style.marginBottom = '5px';
-        core_elements[6 + 9 * i].style.marginRight = '5px';
+        core_elements[2 + 9 * i].style.marginRight = '5px';
+        core_elements[18 + i].style.marginBottom = '5px';
+        core_elements[45 + i].style.marginBottom = '5px';
+        core_elements[5 + 9 * i].style.marginRight = '5px';
     }
 
     generate_puzzle();
