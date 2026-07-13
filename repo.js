@@ -190,10 +190,8 @@ function repo_escape(){
 
 function repo_init(){
     core_repo_init({
-      'beforeunload': {
-        'todo': function(event){
-            event.preventDefault();
-        },
+      'beforeunload': function(event){
+          event.preventDefault();
       },
       'events': {
         'check': {
